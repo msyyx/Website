@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	button{
+		background-color: grey;
+	}
+	</style>
+	<title>Admin Page</title>
+</head>
+<body>
+<h1>  Settings  </h1>
+	<div id="main"style= "border-style:groove;margin-left:25%;margin-right:25%;border-radius:5px">
+
+		<button id="info" style="border-radius:5px;margin-left:15%;">Update Personal Information </button>
+		<button id="friend" style="border-radius:5px;margin-left:15%">Manage Friends List </button>
+		<br>
+		<br>
+		<button id="kitchen"style="border-radius:5px;margin-left:15%;">Manage Favorite Kitchens </button>
+		<button id="security"style="border-radius:5px;margin-left:15%">Change Security Settings </button>
+		<br>
+	</div>
+
+<div id="content" style="margin-left:25%;margin-right:25%;">
+
+<form id="password-sheet"style="display:none;">
+  Password:<br>
+  <input type="text" name="Password"><br>
+  New Password:<br>
+  <input type="text" name="New Password"><br>
+	New Password Again:<br>
+  <input type="text" name="New Password Again"><br>
+	<input type="submit" value="Submit">
+	<button class="back"> Go Back </button>
+</form>
+
+<form id="info-sheet"style="display:none;">
+  Nick Name:<br>
+  <input type="text" name="Nick Name"><br>
+  Email:<br>
+  <input type="text" name="Email"><br>
+	Address:<br>
+  <input type="text" name="Address"><br>
+	<input type="submit" value="Submit">
+	<button class="back"> Go Back </button>
+</form>
+
+</div>
+	<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<script src="AdminButtonListener.js"></script>
+</body>
