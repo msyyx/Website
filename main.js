@@ -20,7 +20,7 @@
 									"width":1000,			
 									"height":270,				
 									"posterWidth":640,	
-									"posterHeight":270,	
+									"posterHeight":640,	
 									"scale":0.9,					
 									"speed":500,
 									"autoPlay":false,
