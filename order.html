@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="css/main.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.navbar{
+    background-color: #ffa366;
+    border-bottom: solid 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+}
+</style>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">TEXTT</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">PlatformName</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-left">
+                  <li>
+                      <a href="login.html">Login</a>
+                  </li>
+                  <li>
+                      <a href="main.html">Home</a>
+                  </li>
+                  <li>
+                      <a href="HostPage.html">Host Page </a>
+                  </li>
+                  <li>
+                      <a href="order.html">Order</a>
+                  </li>
+                  <li>
+                      <a href="#">Contact</a>
+                  </li>
+                  <li>
+                      <a href="Profile.html">Profile</a>
+                  </li>
+                  <li>
+                      <a href="Search.html">Search</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
 </head>
 <body>
-
+<br><br>
 <h1>Order History </h1>
 
-<table border="1" style="width:100%">
+<table border="1" style="width:80%; margin-left:10%;margin-right:10%">
   <tr>
     <td>Kitchen</td>
     <td>Ordered at</td>
@@ -30,13 +82,19 @@
 </table>
 
 
-<div id="review-form" style="display:none">
+<div id="review-form" style="display:none; width:40%; height:200px; margin-left:10%; margin-right:10%">
   <form>
-    Title:<br>
-    <input type="text" name="Title"><br>
-    Text:<br>
-    <input type="text" name="Text"><br>
-    <span class="star-rating">
+      <fieldset>
+        <legend>Title</legend>
+          <input type="text" name="Title"><br>
+      </fieldset>
+      <br>
+      <fieldset>
+        <legend>Text</legend>
+          <textarea class="longInput" cols="100" rows="10"></textarea>
+      </fieldset>
+
+  <span class="star-rating">
   <input type="radio" name="rating" value="1"><i></i>
   <input type="radio" name="rating" value="2"><i></i>
   <input type="radio" name="rating" value="3"><i></i>

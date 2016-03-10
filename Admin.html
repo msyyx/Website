@@ -1,27 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 	<style>
-	button{
-		background-color: grey;
+	button {
+	    background-color: #ffa366; /* Green */
+	    border: none;
+	    color: white;
+	    width:300px;
+	    text-align: center;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 16px;
 	}
+	.navbar{
+	    background-color: #ffa366;
+	    border-bottom: solid 2px rgba(0,0,0,0.2);
+	    box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
+	}
+
 	</style>
-	<title>Admin Page</title>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+										<span class="sr-only">TEXTT</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="#">PlatformName</a>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav navbar-left">
+										<li>
+												<a href="login.html">Login</a>
+										</li>
+										<li>
+												<a href="main.html">Home</a>
+										</li>
+										<li>
+												<a href="HostPage.html">Host Page </a>
+										</li>
+										<li>
+												<a href="order.html">Order</a>
+										</li>
+										<li>
+												<a href="#">Contact</a>
+										</li>
+										<li>
+												<a href="Profile.html">Profile</a>
+										</li>
+										<li>
+												<a href="Search.html">Search</a>
+										</li>
+								</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container -->
+		</nav>
+
 </head>
 <body>
-<h1>  Settings  </h1>
-	<div id="main"style= "border-style:groove;margin-left:25%;margin-right:25%;border-radius:5px">
+<br><br>
+<h1 style="margin-left:5%">  Settings  </h1>
+	<div id="main"style= "margin-left:5%;border-radius:5px">
 
-		<button id="info" style="border-radius:5px;margin-left:15%;">Update Personal Information </button>
-		<button id="friend" style="border-radius:5px;margin-left:15%">Manage Friends List </button>
-		<br>
-		<br>
-		<button id="kitchen"style="border-radius:5px;margin-left:15%;">Manage Favorite Kitchens </button>
-		<button id="security"style="border-radius:5px;margin-left:15%">Change Security Settings </button>
-		<br>
+		<button id="info">Update Personal Information </button>
+		<button id="friend">Manage Friends List </button>
+		<br><br>
+		<button id="kitchen">Manage Favorite Kitchens </button>
+		<button id="security">Change Security Settings </button>
+
 	</div>
 
-<div id="content" style="margin-left:25%;margin-right:25%;">
+<div id="content" style="margin-left:5%;margin-right:25%;">
 
 <form id="password-sheet"style="display:none;">
   Password:<br>
@@ -31,7 +90,7 @@
 	New Password Again:<br>
   <input type="text" name="New Password Again"><br>
 	<input type="submit" value="Submit">
-	<button class="back"> Go Back </button>
+	<button class="back" style="width:70px"> Go Back </button>
 </form>
 
 <form id="info-sheet"style="display:none;">
@@ -42,7 +101,7 @@
 	Address:<br>
   <input type="text" name="Address"><br>
 	<input type="submit" value="Submit">
-	<button class="back"> Go Back </button>
+	<button class="back"style="width:70px"> Go Back </button>
 </form>
 
 </div>
