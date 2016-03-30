@@ -1,5 +1,6 @@
 CSC309 - LAB4
 
 1. npm install
-2. run node server.js on command line
-3. open 127.0.0.1:3000
+2. run mongodb
+3. run node server.js on command line
+4. open 127.0.0.1:3000
