@@ -1,65 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Host Name Here</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Host Name Here</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/hostPage.css" rel="stylesheet">
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="css/hostPage.css" rel="stylesheet">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">TEXTT</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">PlatformName</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Register</a>
-                    </li>
-                    <li>
-                        <a href="main.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="HostPage.html">Host Page </a>
-                    </li>
-                    <li>
-                        <a href="order.html">Order</a>
-                    </li>
-                    <li>
-                        <a href="Profile.html">Profile</a>
-                    </li>
-                    <li>
-                        <a href="search.html">Search</a>
-                    </li>
-                    <li>
-                        <a href="Admin.html">Admin</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-</head>
+        <script src="https://fb.me/react-0.14.5.js"></script>
+        <script src="https://fb.me/react-dom-0.14.5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+        <div class="row" id="header"></div>
+
+    </head>
+
     <!-- Page Content -->
     <div class="container">
         <div class="row">
-
 
             <div class="col-md-10">
 
@@ -84,16 +44,16 @@
                 </div>
 
                 <div class="well">
-                        <div class="row">
-                            <ul class="nav nav-tabs" role="tablist" id="menu">
-                                <li role="presentation" class="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
-                                <li role="presentation"><a href="#order" aria-controls="order" role="tab" data-toggle="tab">Order</a></li>
-                                <li role="presentation"><a href="#info" aria-controls="info" role="tab" data-toggle="tab" id="mapTrigger">Info</a></li>
-                            </ul>
-                        </div>
+                    <div class="row">
+                        <ul class="nav nav-tabs" role="tablist" id="menu">
+                            <li role="presentation" class="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
+                            <li role="presentation"><a href="#order" aria-controls="order" role="tab" data-toggle="tab">Order</a></li>
+                            <li role="presentation"><a href="#info" aria-controls="info" role="tab" data-toggle="tab" id="mapTrigger">Info</a></li>
+                        </ul>
+                    </div>
 
 
-                <br>
+                    <br>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="reviews">
                             <div class="row">
@@ -145,27 +105,27 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="info">
 
-                                <div id="map"></div>
+                            <div id="map"></div>
 
-                                <div id="hour">
-                                    <h3>Hours:</h3>
+                            <div id="hour">
+                                <h3>Hours:</h3>
 
-                                    <b>Mon</b>	7:00 am - 6:00 pm<br>
-                                    <b>Tue</b>	7:00 am - 6:00 pm<br>
-                                    <b>Wed</b>	7:00 am - 6:00 pm<br>
-                                    <b>Thu</b>	7:00 am - 6:00 pm<br>
-                                    <b>Fri</b>	7:00 am - 6:00 pm<br>
-                                    <b>Sat</b>	9:00 am - 5:00 pm<br>
-                                    <b>Sun</b>	9:00 am - 3:00 pm<br><br>
+                                <b>Mon</b>	7:00 am - 6:00 pm<br>
+                                <b>Tue</b>	7:00 am - 6:00 pm<br>
+                                <b>Wed</b>	7:00 am - 6:00 pm<br>
+                                <b>Thu</b>	7:00 am - 6:00 pm<br>
+                                <b>Fri</b>	7:00 am - 6:00 pm<br>
+                                <b>Sat</b>	9:00 am - 5:00 pm<br>
+                                <b>Sun</b>	9:00 am - 3:00 pm<br><br>
 
-                                    <b>Contact:</b> (416)-666-6666
-                                </div>
+                                <b>Contact:</b> (416)-666-6666
                             </div>
+                        </div>
                         <div role="tabpanel" class="tab-pane" id="order">
                             <ul class="item-list">
                                 <li><div class="row">
                                     Hamburger XII ver.<button type="button" class="btn btn-warning">+</button>
-                                    </div>
+                                </div>
                                 </li>
                                 <li><div class="row bg">
                                     Hamburger X ver.<button type="button" class="btn btn-warning">+</button>
@@ -180,7 +140,7 @@
                                     233333333333<button type="button" class="btn btn-warning">+</button>
                                 </div>
                                 </li>
-                                </ul>
+                            </ul>
 
                             <hr>
                             <div class="row">
@@ -188,51 +148,26 @@
                             </div>
                         </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-    <!-- /.container -->
-
-    <div class="container">
-        <hr>
-
-
-    </div>
-    <!-- /.container -->
-<body>
-<!-- Footer -->
-<footer>
-    <div class="row">
-        <div id="bottom-footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="#">Home</a>
-                    <a href="#">Link2</a>
-                    <a href="#">Link3</a>
-                    <a href="#">Link4</a>
-                    <a href="#">Link5</a>
-                    <a href="#">Link6</a>
-                    <a href="#">Link7</a>
-                </div>
-            </div>
-            <p></p>
-            <div class="row"><p>Copyright @2016 by PlatForm Name. All Rights Reserved.<p></div>
-        </div>
     </div>
 
-</footer>
+    </div>
 
-<!-- Google Map-->
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer></script>
-<!-- jQuery -->
-<script src="js/jquery-2.2.1.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/hostPage.js"></script>
-</body>
+    <!-- Footer -->
+    <footer>
+        <div class="row" id="footer"></div>
+    </footer>
+
+    <!-- Google Map-->
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+            async defer></script>
+    <!-- jQuery -->
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/babel" src="js/Header.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/hostPage.js"></script>
 </html>
