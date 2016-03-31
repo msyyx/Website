@@ -16,11 +16,15 @@ body{
 .navbar-brand {
     color: #000000;
 }
+
+#header {
+    width: 100%;
+}
 footer {
     padding: 15px 0;
     width: 100%;
     background-color: #ffa366;
-    position: relative;
+    position: absolute;
     bottom:0;
 }
 

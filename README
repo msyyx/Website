@@ -1,6 +1,35 @@
 CSC309 - LAB4
 
+
 1. npm install
-2. run mongodb
+2. run mongodb (Setup Tutorial: https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/)
 3. run node server.js on command line
 4. open 127.0.0.1:3000
+
+*****************************************
+
+
+MongoDB demo of adding and showing host:
+----------------------------------------
+This demo shows the basic usage of mongoDB as well as posting and rendering data with frontend.
+Just give you guys a basic idea of how to setup mongodb
+
+1. Make sure you had done the instruction above to setup database and server
+2. Go to http://localhost:3000/host
+    enter data for testing, if insertion to database succeeded, console would show "Submission completed".
+3. Go to http://localhost:3000/host/show
+    this will show all hosts that are stored in the database.
+
+
+
+FYI: Location of relative files
+Schema:
+    models/host.js
+Routing and restful API handling:
+    controllers/routeHost.js
+    view/newhost.html
+    server.js (this is where the db is connected to, remember to add the route module to here using app.use() to connect it to the frontend)
+
+
+
+Silvia.

@@ -3,7 +3,7 @@
 var mongoose = require( 'mongoose' );
 var Schema   = mongoose.Schema;
 
-const hostSchema = new Schema({
+var hostSchema = new Schema({
     name: {type:String , default: '', trim: true},
     owner:{ type : Schema.ObjectId, ref : 'User' },
     description: { type : String, default : '', trim : true },
