@@ -1,69 +1,40 @@
+var express = require('express');
 var mongoose = require('mongoose');
+var path = require('path');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
-var UserSchema = mongoose.Schema({
-  username: String,
-  email: String,
-  password: String
-});
+var userRoute = require('./controllers/routeUser.js');
 
-//To connect to MongoDB's  database
-mongoose.connect('mongodb://localhost/db');
+var app = express();
+var port = 3000;
 
-//check the status of this connection
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('Connected to MongoDB');
-});
+app.listen(port);
 
-// Creates the model for Books.
-var Users = mongoose.model('Users', UserSchema);
-
-//To create an instance from a model, we can simply call new on the model.
-// Instantiates a new Book. It's still not in the DB.
-var insUser = new Users({
-  title: 'Introduction to Algorithms',
-  authors: [
-    {
-      first: 'Thomas',
-      middle: 'H.',
-      last: 'Cormen'
-    },
-    {
-      first: 'Charles',
-      middle: 'E.',
-      last: 'Leiserson'
-    },
-    {
-      first: 'Ronald',
-      middle: 'L.',
-      last: 'Rivest'
-    },
-    {
-      first: 'Clifford',
-      last: 'Stein'
+mongoose.connect('mongodb://localhost/db', function(err) {
+    if(err) {
+        console.log('connection error', err);
+    } else {
+        console.log('connection successful');
     }
-  ],
-  year: 1990
-})
+});
 
-//The instnace is not saved in the DB yet. Let's try to save it using `save`:
-// Tries to save the book in the DB.
-insBook.save(function (err) {
-	  if (err) {
-	    console.log(err);
-	    return;
-	  }
 
-	  // Now it's saved!
-	  console.log('Registered user: ' + insUser);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'view')));
 
-	  Users.findById(insUser._id, function(err, user) {
-	    if (err) {
-	      console.log(err);
-	      return;
-	    }
 
-	    console.log('\n\n Found user: ' + user);
-	   });
- });
+/** Routing Modules Configuration **/
+app.use('/user',userRoute);
+app.use('/', function(req, res){res.sendFile('main.html', {root: "./view/"});});
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
