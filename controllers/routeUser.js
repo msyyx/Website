@@ -31,8 +31,8 @@ router.post('/add', function(req, res, next) {
     new User({
         //owner    : req.cookies.user_id,
         username: req.body.username,
-        password: req.body.password,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
     }).save( function ( err, user, count ){
         if( err ) return next( err );
 

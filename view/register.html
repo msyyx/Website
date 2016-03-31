@@ -14,15 +14,15 @@
 <form autocomplete='on' action='server.js'>
 	<p>
 	<label for='user_id'>Username</label> 
-	<input type="text" name="user_id" placeholder="username" required='required'>
+	<input type="text" id="user_id" placeholder="username" required='required'>
 	</p>
 	<p>
 	<label for='user_email'>Email</label>
-	<input type='email' name='user_email' placeholder='email@mail.com' required='required'>
+	<input type='email' id='user_email' placeholder='email@mail.com' required='required'>
 	</p>
 	<p>
 	<label for='password'>Password</label>
-	<input type='password' name='password' placeholder='password' autocomplete='off' required='required'>
+	<input type='password' id='password' placeholder='password' autocomplete='off' required='required'>
 	</p>
 	<p>
 	<input type='submit' value='Sign up'>
@@ -44,8 +44,9 @@
 
          $.post( "/user/add",
                  {
-                     "name" : $( "#name" ).val(),
-                     "description":$( "#description" ).val()
+                     "username": $( "#user_id" ).val(),
+                     "email": $( "user_email" ).val(),
+                     "description":$( "#password" ).val()
                  }
          )
          .done(function( data ) {
