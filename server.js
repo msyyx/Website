@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 
 var hostRoute = require('./controllers/routeHost.js');
 var userRoute = require('./controllers/routeUser.js');
-var profileRoute =  require('./controllers/routeProfile.js');
 
 var app = express();
 var port = 3000;
@@ -31,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'view')));
 /** Routing Modules Configuration **/
 app.use('/host',hostRoute);
 app.use('/user',userRoute);
-app.use('/',profileRoute);
 app.use('/', function(req, res){res.sendFile('main.html', {root: "./view/"});});
 
 
