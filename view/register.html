@@ -11,7 +11,7 @@
 </head>
 <body>
 <div>
-<form autocomplete='on' action='server.js'>
+<form id='userInput' autocomplete='on'>
 	<p>
 	<label for='user_id'>Username</label> 
 	<input type="text" id="user_id" placeholder="username" required='required'>
@@ -45,7 +45,7 @@
          $.post( "/user/add",
                  {
                      "username": $( "#user_id" ).val(),
-                     "email": $( "user_email" ).val(),
+                     "email": $( "#user_email" ).val(),
                      "password":$( "#password" ).val()
                  }
          )

@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 
 /* add a host */
 router.post('/add', function(req, res, next) {
+    console.log(req.body.name);
     new Host({
         //owner    : req.cookies.user_id,
         name    : req.body.name,
