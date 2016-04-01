@@ -2,28 +2,35 @@
 	
 <html>
 <head>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://fb.me/react-0.14.5.js"></script>
+    <script src="https://fb.me/react-dom-0.14.5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <div class="row" id="header"></div>
 	<meta charset='UTF-8'>
 	<h1>Register</h1>
-	<link rel='stylesheet' type='text.css' href='css/register_style.css'>
+	<link rel='stylesheet' type='text.css' href='../css/register_style.css'>
 </head>
 <body>
-<div>
-<form autocomplete='on'>
+<div id='body'>
+<form id='userInput' autocomplete='on'>
 	<p>
 	<label for='user_id'>Username</label> 
-	<input type="text" name="user_id" placeholder="username" required='required'>
+	<input type="text" id="user_id" placeholder="username" required='required'>
 	</p>
 	<p>
 	<label for='user_email'>Email</label>
-	<input type='email' name='user_email' placeholder='email@mail.com' required='required'>
+	<input type='email' id='user_email' placeholder='email@mail.com' required='required'>
 	</p>
 	<p>
 	<label for='password'>Password</label>
-	<input type='password' name='password' placeholder='password' autocomplete='off' required='required'>
+	<input type='password' id='password' placeholder='password' autocomplete='off' required='required'>
 	</p>
+	<div id='button'>
 	<p>
 	<input type='submit' value='Sign up'>
 	</p>
+	</div>
 	<p>
 	Already registered?
 	<a href='login.html'>Log in!</a>
@@ -31,4 +38,36 @@
 </form>
 </div>
 </body>
+<footer>
+    <div class="row" id="footer"></div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="js/jquery-2.2.1.min.js"></script>
+
+<script>
+    $( "#userInput" ).submit(function(e){
+        e.preventDefault();
+        var values = $(this).serialize();
+        console.log($( "#description" ).val());
+
+         $.post( "/user/add",
+                 {
+                     "username": $( "#user_id" ).val(),
+                     "email": $( "#user_email" ).val(),
+                     "password":$( "#password" ).val()
+                 }
+         )
+         .done(function( data ) {
+         console.log(data);
+         });
+
+    })
+
+</script>
+<!-- Bootstrap Core JavaScript -->
+<script type="text/babel" src="js/Header.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 </html>

@@ -5,6 +5,10 @@
   <title>Profile Page</title> 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/profile.css" rel="stylesheet">
+  <script src="https://fb.me/react-0.14.5.js"></script>
+  <script src="https://fb.me/react-dom-0.14.5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -55,12 +59,11 @@
 
 
 <body>
-  <div class="container">
+  <div class="container" id ="profile">
 
   <h1>Profile Information</h1>
   <hr>
   <img src="img/profile.jpg">
-
   <h2> Alice Steve</h2>
 
   <h3>Birthdata: 1989 Jun 12th</h3>
@@ -68,8 +71,34 @@
   <h3>Recently visited</h3>
 
   <p> blabalalabalabal</p>
-      </div>
-  <div>
+
+  <button type="button" class="btn" id ="edit" onclick="change()" >Edit your profile</button>
+
+  </div>
+
+  <div id="editprofile" >
+
+    <img src="img/profile.jpg">
+    <h2> Edit your profile now</h2> 
+    <hr>
+        <form id="profileInput">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="UserName" required>
+            </div>
+            <div class="form-group">
+                <label for="dateofbirth">Birthdate</label>
+                <input type="date" class="form-control" id="birthdate" placeholder="birthday" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Contact Email</label>
+                <input type="text" class="form-control" id="email" placeholder="xxxx@gmail.com" required>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+  </div>
+
+  
 
   <footer>
     <div class="row">
@@ -92,6 +121,16 @@
 
 </footer>
 
-</div>
+
+
 </body>
+<script >
+function change(){
+  $('#editprofile').show();
+  $('#profile').hide();
+}
+</script>
+<script src="js/jquery-2.2.1.min.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
 </html>
