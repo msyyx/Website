@@ -5,6 +5,17 @@
 <link href="css/main.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/profile.css" rel="stylesheet">
+
+    <script src="https://fb.me/react-0.14.5.js"></script>
+    <script src="https://fb.me/react-dom-0.14.5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+
 <style>
 .navbar{
     background-color: #ffa366;
@@ -12,76 +23,18 @@
     box-shadow: 0px 4px 16px 0px rgba(0,0,0,0.2);
 }
 </style>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">TEXTT</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">PlatformName</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Register</a>
-                    </li>
-                    <li>
-                        <a href="main.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="HostPage.html">Host Page </a>
-                    </li>
-                    <li>
-                        <a href="order.html">Order</a>
-                    </li>
-                    <li>
-                        <a href="Profile.html">Profile</a>
-                    </li>
-                    <li>
-                        <a href="search.html">Search</a>
-                    </li>
-                    <li>
-                        <a href="Admin.html">Admin</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+<div class="row" id="header"></div>
+
 </head>
 <body>
 <br><br>
 <h1>Order History </h1>
 
-<table border="1" style="width:80%; margin-left:10%;margin-right:10%">
-  <tr>
-    <td>Kitchen</td>
-    <td>Ordered at</td>
-    <td>Rating</td>
-    <td>Review</td>
-  </tr>
-  <tr>
-    <td>Batman</td>
-    <td>01/25/2016</td>
-    <td>86</td>
-    <td><button class="review">Write a review </button></td>
-  </tr>
-  <tr>
-    <td>Deadpool</td>
-    <td>03/04/2016</td>
-    <td>94</td>
-    <td><button class="review">Write a review </button></td>
+<div id = "new-div">
+</div>
 
-  </tr>
+<table id= "order" border="1" style="width:80%; margin-left:10%;margin-right:10%">
+
 </table>
 
 
@@ -94,7 +47,7 @@
       <br>
       <fieldset>
         <legend>Text</legend>
-          <textarea class="longInput" cols="100" rows="10"></textarea>
+          <textarea class="longInput" cols="100" rows="5"></textarea>
       </fieldset>
 
   <span class="star-rating">
@@ -120,25 +73,15 @@ $('.review').on('click', function(e) {
   $('#review-form').show();
 })
 </script>
+<script type="text/babel" src="js/Header.js"></script>
+<script type="text/babel" src="js/order.js"></script>
+
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-2.2.1.min.js"></script>
 </body>
 <footer>
-    <div class="row">
-        <div id="bottom-footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="#">Home</a>
-                    <a href="#">Link2</a>
-                    <a href="#">Link3</a>
-                    <a href="#">Link4</a>
-                    <a href="#">Link5</a>
-                    <a href="#">Link6</a>
-                    <a href="#">Link7</a>
-                </div>
-            </div>
-            <p></p>
-            <div class="row"><p>Copyright @2016 by PlatForm Name. All Rights Reserved.<p></div>
-        </div>
-    </div>
-
+    <div class="row" id="footer"></div>
 </footer>
+
 </html>

@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 var hostRoute = require('./controllers/routeHost.js');
+var orderRoute = require('./controllers/routeOrder.js');
 
 var app = express();
 var port = 3000;
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'view')));
 
 /** Routing Modules Configuration **/
 app.use('/host',hostRoute);
+app.use('/order', orderRoute);
 app.use('/', function(req, res){res.sendFile('main.html', {root: "./view/"});});
 
 
@@ -37,4 +39,3 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
