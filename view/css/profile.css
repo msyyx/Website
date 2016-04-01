@@ -24,8 +24,11 @@ footer {
     padding: 15px 0;
     width: 100%;
     background-color: #ffa366;
-    position: absolute;
+    position: relative;
     bottom:0;
+}
+button {
+    color: #ffa366;
 }
 
 #bottom-footer{
@@ -50,4 +53,8 @@ footer {
 #bottom-footer p{
     color: #626262;
     font-size: 12px;
+}
+
+#editprofile{
+    display: none;
 }
