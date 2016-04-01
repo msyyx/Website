@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var hostRoute = require('./controllers/routeHost.js');
 var orderRoute = require('./controllers/routeOrder.js');
 var userRoute = require('./controllers/routeUser.js');
-
+var profileRoute = require('./controllers/routeProfile.js');
 var app = express();
 var port = 3000;
 
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'view')));
 app.use('/host',hostRoute);
 app.use('/order', orderRoute);
 app.use('/user',userRoute);
-
+app.use('/profile',profileRoute);
 app.use('/', function(req, res){res.sendFile('main.html', {root: "./view/"});});
 
 
