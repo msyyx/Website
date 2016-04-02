@@ -16,30 +16,36 @@ router.get('/', function(req, res, next) {
 
 
 /* show all hosts */
- router.get('/show', function(req, res, next) {
- console.log("here I am");
+router.get('/show', function(req, res, next) {
+console.log("here I am");
 
-      User.find(function (err, users) {
-      if (err) return next(err);
-      console.log(users);
-      res.json(users);
-      });
+    User.find(function (err, users) {
+    if (err) return next(err);
+    console.log(users);
+    res.json(users);
+    });
 });
 
 /* add a host */
 router.post('/add', function(req, res, next) {
-    new User({
-        //owner    : req.cookies.user_id,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    }).save( function ( err, user, count ){
-        if( err ) return next( err );
+    User.find({'username':req.body.username}, function(err, users) {
+        if (err) return next(err);
+        console.log(users);
+        if (users[0] == null){
+            new User({
+                //owner    : req.cookies.user_id,
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            }).save( function ( err, user, count ){
+                if( err ) return next( err );
 
-        res.end("Submission completed");
-        //res.redirect( '/' );
+                res.end("Submission completed");
+                //res.redirect( '/' );
+            });
+            console.log("added new user");
+        };
     });
-
 
 });
 
