@@ -64,10 +64,11 @@
   <h1>Profile Information</h1>
   <hr>
   <img src="img/profile.jpg">
-  <h2> Alice Steve</h2>
 
-  <h3>Birthdata: 1989 Jun 12th</h3>
-  <h3>Email: Alicesteve@gmail.com</h3>
+  <h2 id ="Name"> Alice Steve</h2>
+  <h3 id="Username">alice1989</h3>
+  <h3 id="Birthdate">Birthdata: 1989 Jun 12th</h3>
+  <h3 id="Email">Email: Alicesteve@gmail.com</h3>
   <h3>Recently visited</h3>
 
   <p> blabalalabalabal</p>
@@ -84,7 +85,11 @@
         <form id="profileInput">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="UserName" required>
+                <p id="username"></p>
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name" required>
             </div>
             <div class="form-group">
                 <label for="dateofbirth">Birthdate</label>
@@ -128,7 +133,31 @@
 function change(){
   $('#editprofile').show();
   $('#profile').hide();
+  $('#username').append($('#Username').text());
 }
+</script>
+
+<script>
+    $( "#profileInput" ).submit(function(e){
+        e.preventDefault();
+        var values = $(this).serialize();
+        
+
+         $.put( "/profile/:id",
+                 {
+                      
+                      email :$( "#email" ).val(),
+                      dateofbirth: $( "#birthday" ).val(),
+                      name :$( "#name" ).val(),
+                 }
+         )
+         .done(function( data ) {
+         console.log(data);
+         res.end("update your profile successful");
+         });
+
+    })
+
 </script>
 <script src="js/jquery-2.2.1.min.js"></script>
 
