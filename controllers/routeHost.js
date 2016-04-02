@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 
 /* show all hosts */
  router.get('/show', function(req, res, next) {
- console.log("here am i");
 
       Host.find(function (err, hosts) {
       if (err) return next(err);
@@ -42,7 +41,7 @@ router.post('/add', function(req, res, next) {
 
 });
 
-/***** Not yet implement
+
 
  // GET /host/id
  router.get('/:id', function(req, res, next) {
@@ -51,7 +50,7 @@ router.post('/add', function(req, res, next) {
         res.json(host);
     });
 });
-
+ /***** Not yet implement
  //update host information
  router.put('/:id', function(req, res, next) {
     Host.findByIdAndUpdate(req.params.id, req.body, function (err, host) {
