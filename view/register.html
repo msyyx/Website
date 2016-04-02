@@ -60,8 +60,9 @@
          )
          .done(function( data ) {
          	alert("Successfully Registered!");
+         	window.location.href='/main.html';
          })
-         .fail(function(data) {
+         .fail(function() {
          	alert("Username already registered");
          });
 

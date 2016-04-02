@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var User = require('../models/user.js');
 
 /* GET /host all hosts. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     /*Host.find(function (err, hosts) {
         if (err) return next(err);
         res.json(hosts);
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 
 /* show all hosts */
-router.get('/show', function(req, res, next) {
+router.get('/show', function (req, res, next) {
     User.find(function (err, users) {
     if (err) return next(err);
     console.log(users);
@@ -25,16 +25,17 @@ router.get('/show', function(req, res, next) {
 });
 
 /* add a host */
-router.post('/add', function(req, res, next) {
-    User.find({'username':req.body.username}, function(err, users) {
+router.post('/add', function (req, res, next) {
+    User.find({'username':req.body.username}, function (err, users) {
         if (err) return next(err);
+        console.log(req.body.username);
         if (users[0] == null){
             new User({
                 //owner    : req.cookies.user_id,
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
-            }).save( function ( err, user, count ){
+            }).save(function ( err, user, count ){
                 if( err ) return next( err );
 
                 res.end("Submission completed");
@@ -47,16 +48,20 @@ router.post('/add', function(req, res, next) {
 
 });
 
-/***** Not yet implement
-
- // GET /host/id
- router.get('/:id', function(req, res, next) {
-    Host.findById(req.params.id, function (err, host) {
+// GET /host/username, password
+router.post('/find', function (req, res, next) {
+    User.find({'username':req.body.username, 'password':req.body.password}, function (err, users) {
         if (err) return next(err);
-        res.json(host);
+        console.log(req.body.username);
+        if (!(users[0] == null)){
+            res.end("Information found");
+        }else{
+            return next(new Error("Incorrect information"));
+        }
     });
 });
 
+/***** Not yet implement
  //update host information
  router.put('/:id', function(req, res, next) {
     Host.findByIdAndUpdate(req.params.id, req.body, function (err, host) {
