@@ -17,8 +17,6 @@ router.get('/', function(req, res, next) {
 
 /* show all hosts */
 router.get('/show', function(req, res, next) {
-console.log("here I am");
-
     User.find(function (err, users) {
     if (err) return next(err);
     console.log(users);
@@ -30,7 +28,6 @@ console.log("here I am");
 router.post('/add', function(req, res, next) {
     User.find({'username':req.body.username}, function(err, users) {
         if (err) return next(err);
-        console.log(users);
         if (users[0] == null){
             new User({
                 //owner    : req.cookies.user_id,
@@ -43,8 +40,9 @@ router.post('/add', function(req, res, next) {
                 res.end("Submission completed");
                 //res.redirect( '/' );
             });
-            console.log("added new user");
-        };
+        }else{
+            return next(new Error("Invalid Username"));
+        }
     });
 
 });

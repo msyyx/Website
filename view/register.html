@@ -50,7 +50,6 @@
     $( "#userInput" ).submit(function(e){
         e.preventDefault();
         var values = $(this).serialize();
-        console.log($( "#description" ).val());
 
          $.post( "/user/add",
                  {
@@ -60,7 +59,10 @@
                  }
          )
          .done(function( data ) {
-         console.log(data);
+         	alert("Successfully Registered!");
+         })
+         .fail(function(data) {
+         	alert("Username already registered");
          });
 
     })
