@@ -138,23 +138,23 @@ function change(){
 </script>
 
 <script>
-    $( "#profileInput" ).submit(function(e){
+   $( "#profileInput" ).submit(function(e){
         e.preventDefault();
         var values = $(this).serialize();
         
-
-         $.put( "/profile/:id",
-                 {
-                      
-                      email :$( "#email" ).val(),
-                      dateofbirth: $( "#birthday" ).val(),
-                      name :$( "#name" ).val(),
-                 }
-         )
-         .done(function( data ) {
+         $.ajax( {
+                  url:"/profile/id",
+                  type:"PUT",
+                  data:{    
+                     
+                     "name" : $( "#name" ).val(),
+                     "email":$( "#email" ).val(),
+                     "dateofbirth":$("#birthdate").val()}
+         }).done(function(data) {
          console.log(data);
-         res.end("update your profile successful");
          });
+
+    
 
     })
 
