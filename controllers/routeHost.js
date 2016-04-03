@@ -28,9 +28,9 @@ router.post('/add', function(req, res, next) {
         description : req.body.description
     }).save( function ( err, host, count ){
         if( err ) return next( err );
+        console.log(host);
 
-        res.end("Submission completed");
-        //res.redirect( '/' );
+        res.end( '/host/'+host._id );
     });
 
 

@@ -53,9 +53,10 @@
                      "description":$( "#description" ).val()
                  }
          )
-         .done(function( data ) {
-         console.log(data);
-         });
+         .success(function(data) {
+
+            window.location.href = data;
+        });
 
     })
 
