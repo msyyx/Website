@@ -56,7 +56,7 @@ router.post('/find', function (req, res, next) {
             var token = jwt.sign(users[0], 'SecretKey', {
                 expiresIn: 1440*60 // expires in 24 hours
             });
-            console.log(token);
+            //console.log(token);
             res.send(token);            
             res.end("Information found");
         }else{
