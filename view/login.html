@@ -50,8 +50,9 @@
                 }
         )
         .done(function( data ) {
-        	alert("Successfully Logged In!");
+        	alert("Successfully logged in!");
         	window.location.href='/main.html';
+        	document.cookie="token=" + data + ";";
         })
         .fail(function() {
          	alert("Username or password incorrect");

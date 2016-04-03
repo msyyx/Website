@@ -1,6 +1,7 @@
 var express = require('express');
+var app = express();
 var router = express.Router();
-
+var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
 
@@ -37,7 +38,6 @@ router.post('/add', function (req, res, next) {
                 password: req.body.password
             }).save(function ( err, user, count ){
                 if( err ) return next( err );
-
                 res.end("Submission completed");
                 //res.redirect( '/' );
             });
@@ -52,8 +52,12 @@ router.post('/add', function (req, res, next) {
 router.post('/find', function (req, res, next) {
     User.find({'username':req.body.username, 'password':req.body.password}, function (err, users) {
         if (err) return next(err);
-        console.log(req.body.username);
         if (!(users[0] == null)){
+            var token = jwt.sign(users[0], 'SecretKey', {
+                expiresIn: 1440*60 // expires in 24 hours
+            });
+            console.log(token);
+            res.send(token);            
             res.end("Information found");
         }else{
             return next(new Error("Incorrect information"));
