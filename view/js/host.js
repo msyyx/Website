@@ -1,4 +1,30 @@
+var Tabs = ReactBootstrap.Tabs;
+var Tab = ReactBootstrap.Tab;
+
+var map;
+var toronto = {lat: 43.700 , lng: -79.410};
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: toronto
+    });
+
+    var marker = new google.maps.Marker({
+        position: toronto,
+        map: map,
+        title: 'location!'
+    });
+}
+
+function mapResize(){
+    console.log("?");
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(toronto);
+}
+
 var HostInfo = React.createClass({
+
     loadInfoFromServer: function() {
         $.ajax({
             url: document.URL + "/info",
@@ -6,6 +32,7 @@ var HostInfo = React.createClass({
             cache: false,
             success: function(data) {
                 this.setState({data: data});
+                console.log(data);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(document.URL + "/info", status, err.toString());
@@ -13,33 +40,34 @@ var HostInfo = React.createClass({
         });
     },
     getInitialState: function() {
+
         return {data: []};
+    },
+    componentDidMount: function() {
+        this.loadInfoFromServer();
     },
     render:function(){
         return(
         <div>
-            <Introduction/>
+            <Introduction data={this.state.data}/>
             <br/>
             <DetailedInfo/>
         </div>
         )
     },
-
 });
 
 
 var Introduction = React.createClass({
-
-
     render: function() {
 
         return (
             <div>
             <img className="img-responsive" src="https://www.procook.com.au/new/wp-content/uploads/2015/01/spicy-grilled-non-vegetarian-meat-food.jpg" alt=""/>
                 <div className="caption-full">
-                    <h2>Any Host Name</h2>
-                    <p>Host Introduction and blah blah blah...</p>
-                    <p>Pretend this to be a paragraph </p>
+                    <h2>{this.props.data.name}</h2>
+                    <p>{this.props.data.description}</p>
+
                 </div>
                 <div className="ratings">
                     <p className="pull-right">3 reviews</p>
@@ -59,23 +87,28 @@ var Introduction = React.createClass({
 });
 
 var DetailedInfo = React.createClass({
+    getInitialState() {
+        return {
+            key: 3
+        };
+    },
+    handleSelect(k) {
+        mapResize();
+        this.setState({key : k});
+    },
+
     render: function(){
         return(
             <div className = "well">
+
                 <div className="row">
-                <ul className="nav nav-tabs" role="tablist" id="menu">
-                    <li role="presentation" className="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
-                    <li role="presentation"><a href="#order" aria-controls="order" role="tab" data-toggle="tab">Order</a></li>
-                    <li role="presentation"><a href="#info" aria-controls="info" role="tab" data-toggle="tab" id="mapTrigger">Info</a></li>
-                </ul>
-                </div>
-                <div className = "tab-content">
-                    <Reviews/>
-                    <Order/>
-                    <Extra/>
+                    <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
+                        <Tab eventKey={1} title="Reviews"><br/><Reviews/></Tab>
+                        <Tab eventKey={2} title="Order" ><Order/></Tab>
+                        <Tab eventKey={3} title="Info"><Extra/></Tab>
+                    </Tabs>
                 </div>
                 <br/>
-
             </div>
 
         );
@@ -143,7 +176,7 @@ var Reviews = React.createClass({
 
 });
 
-var Order = React.createClass({
+var Extra = React.createClass({
     render: function(){
         return(
         <div>
@@ -171,7 +204,7 @@ var Order = React.createClass({
 
 });
 
-var Extra = React.createClass({
+var Order = React.createClass({
 
     render: function(){
         return(
@@ -209,3 +242,4 @@ var Extra = React.createClass({
 });
 
 ReactDOM.render(<HostInfo/>, document.getElementById('HostInfo'));
+google.maps.event.addDomListener(window, 'load', initMap);

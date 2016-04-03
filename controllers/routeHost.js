@@ -6,11 +6,6 @@ var Host = require('../models/host.js');
 
 /* GET /host all hosts. */
 router.get('/', function(req, res, next) {
-    /*Host.find(function (err, hosts) {
-        if (err) return next(err);
-        res.json(hosts);
-    });
-    */
     res.sendFile('newHost.html', {root: "view/"});
 });
 
@@ -41,10 +36,13 @@ router.post('/add', function(req, res, next) {
 
 });
 
-
-
  // GET /host/id
  router.get('/:id', function(req, res, next) {
+     res.sendFile('HostPage.html', {root: "view/"});
+});
+
+router.get('/:id/info', function(req, res, next) {
+    console.log("looking for info");
     Host.findById(req.params.id, function (err, host) {
         if (err) return next(err);
         res.json(host);
