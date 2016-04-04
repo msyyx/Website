@@ -206,7 +206,35 @@ var Extra = React.createClass({
 
 var Order = React.createClass({
 
+  HandleClick: function(event) {
+    console.log("placeOrder clicked");
+    var str = document.URL;
+    str = str.split('/');
+    var id = str[str.length - 1];
+    console.log("id: " + id);
+
+    var date = new Date();
+    var dateStr = date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+
+    var orderDetail = {name: 2333, quantity: 6666};
+
+    $.post("/order/add", {
+      "id": document.URL,
+      "date" : dateStr,
+      "orderDetail" : JSON.stringify(orderDetail),
+      "username" : "hgkjfklds"
+    })
+    .success(function(res) {
+      alert("OrderPlaced");
+    })
+    .error(function(res) {
+      alert("db error");
+    });
+  },
+
+
     render: function(){
+      var clickHandler = this.HandleClick;
         return(
             <div>
                 <div role="tabpanel" className="tab-pane" id="order">
@@ -225,14 +253,14 @@ var Order = React.createClass({
                         </li>
 
                         <li><div className="row bg">
-                            233333333333<button type="button" className="btn btn-warning">+</button>
+                            233333333333<button type="button"  className="btn btn-warning">+</button>
                         </div>
                         </li>
                     </ul>
 
                     <hr/>
                         <div className="row">
-                            <button type="button" className="btn btn-warning">Place Order</button>
+                            <button type="button" id = "placeOrder" onClick = {clickHandler} className="btn btn-warning">Place Order</button>
                         </div>
                 </div>
             </div>
@@ -240,6 +268,32 @@ var Order = React.createClass({
     }
 
 });
+
+/*$("#placeOrder").on('click', function(e) {
+  console.log("placeOrder clicked");
+  var str = document.URL;
+  str = str.split('/');
+  var id = str[str.length - 1];
+  console.log("id: " + id);
+
+  var date = new Date();
+  var dateStr = date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+
+  var orderDetail = {name: 2333, quantity: 6666};
+
+  $.post("/order/add", {
+    "id": document.URL,
+    "date" : dateStr,
+    "orderDetail" : JSON.stringify(orderDetail),
+    "username" : "hgkjfklds"
+  })
+  .success(function(res) {
+    alert("OrderPlaced");
+  })
+  .error(function(res) {
+    alert("db error");
+  });
+});*/
 
 ReactDOM.render(<HostInfo/>, document.getElementById('HostInfo'));
 google.maps.event.addDomListener(window, 'load', initMap);
