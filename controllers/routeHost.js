@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Host = require('../models/host.js');
+var jwt = require('jsonwebtoken');
 
 /* GET /host all hosts. */
 router.get('/', function(req, res, next) {
@@ -22,16 +23,41 @@ router.get('/', function(req, res, next) {
 
 /* add a host */
 router.post('/add', function(req, res, next) {
-    new Host({
-        //owner    : req.cookies.user_id,
-        name    : req.body.name,
-        description : req.body.description
-    }).save( function ( err, host, count ){
-        if( err ) return next( err );
-        console.log(host);
+    //verify login
+    var token = req.body.token;
 
-        res.end( '/host/'+host._id );
-    });
+    // decode token
+    if (token) {
+        // verifies secret and checks exp
+        jwt.verify(token, 'SecretKey', function(err, decoded) {
+            if (err) {
+                return res.json({ success: false, message: 'Please login first!'});
+            } else {
+                // if everything is good, save to request for use in other routes
+
+                new Host({
+                    owner   : decoded._doc._id,
+                    ownerName: decoded._doc.username,
+                    name    : req.body.name,
+                    description : req.body.description
+                }).save( function ( err, host, count ){
+                    if( err ) return next( err );
+                    console.log(host);
+
+                    res.end( '/host/'+host._id );
+                });
+            }
+        });
+
+    } else {
+
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'Please login!'
+        });
+    }
 
 
 });

@@ -28,7 +28,7 @@ router.put('/id', function(req, res, next) {
 
 router.post('/load', function(req,res,next){
 
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token;
 
     // decode token
     if (token) {

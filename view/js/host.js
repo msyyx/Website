@@ -80,6 +80,8 @@ var Introduction = React.createClass({
                         4.0 stars
                     </p>
                 </div>
+
+                <p className="pull-right" id="ownerInfo">Host by: <a href= { "/profile/"+ this.props.data.owner}>{this.props.data.ownerName}</a></p>
         </div>
         );
     }

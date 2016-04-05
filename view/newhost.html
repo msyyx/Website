@@ -44,23 +44,30 @@
 <script>
     $( "#hostInput" ).submit(function(e){
         e.preventDefault();
-        var values = $(this).serialize();
-        console.log($( "#description" ).val());
+
+        if(document.cookie.split('=')[0] != "token"){
+            alert("User not login! Redirecting...");
+            window.location.href = "/login.html";
+        }
+        console.log( document.cookie.split('=')[1]);
+
 
          $.post( "/host/add",
                  {
                      "name" : $( "#name" ).val(),
-                     "description":$( "#description" ).val()
+                     "description":$( "#description" ).val(),
+                     "token": document.cookie.split('=')[1]
+
                  }
          )
          .success(function(data) {
 
             window.location.href = data;
         });
-
+        alert("Please login!");
+        window.location.href = "/login.html";
     })
 
-    console.log(document.URL);
 
 </script>
 <!-- Bootstrap Core JavaScript -->

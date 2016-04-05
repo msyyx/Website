@@ -5,6 +5,7 @@ var Schema   = mongoose.Schema;
 
 var hostSchema = new Schema({
     name: {type:String , default: '', trim: true},
+    ownerName: {type:String , default: ''},
     owner:{ type : Schema.ObjectId, ref : 'User' },
     description: { type : String, default : '', trim : true },
     comments: [{
