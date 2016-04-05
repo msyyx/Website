@@ -60,12 +60,17 @@
 
                  }
          )
-         .success(function(data) {
+         .done(function(data) {
+             if(data.success === undefined){
+                 window.location.href = data;
+             }
+             else{
+                 alert("Please login!");
+                 window.location.href = "/login.html";
+             }
+             return;
+        }).error();
 
-            window.location.href = data;
-        });
-        alert("Please login!");
-        window.location.href = "/login.html";
     })
 
 
