@@ -5,69 +5,35 @@
   <title>Profile Page</title> 
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/profile.css" rel="stylesheet">
+
   <script src="https://fb.me/react-0.14.5.js"></script>
   <script src="https://fb.me/react-dom-0.14.5.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   <script src="js/jquery-2.2.1.min.js"></script>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">TEXTT</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">PlatformName</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Register</a>
-                    </li>
-                    <li>
-                        <a href="main.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="HostPage.html">Host Page </a>
-                    </li>
-                    <li>
-                        <a href="order.html">Order</a>
-                    </li>
-                    <li>
-                        <a href="Profile.html">Profile</a>
-                    </li>
-                    <li>
-                        <a href="search.html">Search</a>
-                    </li>
-                    <li>
-                        <a href="Admin.html">Admin</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  <div class="row" id="header"></div>
+    <meta charset="UTF-8">
+    
     <script>
-    var token = document.cookie.split(';')[0].split('=')[1];
+    var token =  document.cookie.split('=')[1];
 
     $.post( "/profile/load",
                 {'token' :token
                 
                 }
         )
-        .done(function( data ) {
-          $("#Name").text("Name : "+data.name);
-          $("#Username").text("Username : "+data.username);
-          $("#Email").text("Email : " + data.email);
-          $("#Birthdate").text("Birthdate : "+data.dateofbirth);
-          $("#recently").text(data.recentlyvisit);
+        .done(function(data) {
+          console.log(data._id);
+          $.get("/profile/"+data._id).done(function(d){
+
+
+            console.log(d);
+            $("#Name").text("Name : "+d.name);
+            $("#Username").text("Username : "+d.username);
+            $("#Email").text("Email : " + d.email);
+            $("#Birthdate").text("Birthdate : "+d.dateofbirth);
+            $("#recently").text(d.recentlyvisit);
+        });
 
         })
         .fail(function() {
@@ -86,13 +52,13 @@
   <hr>
   <img src="img/profile.jpg">
 
-  <h2 id ="Name"> Alice Steve</h2>
-  <h3 id="Username">alice1989</h3>
-  <h3 id="Birthdate">Birthdata: 1989 Jun 12th</h3>
-  <h3 id="Email">Email: Alicesteve@gmail.com</h3>
+  <h2 id ="Name"> </h2>
+  <h3 id="Username"></h3>
+  <h3 id="Birthdate"></h3>
+  <h3 id="Email"></h3>
   <h3>Recently visited</h3>
 
-  <p> blabalalabalabal</p>
+  <p id ="recently visit"> </p>
 
   <button type="button" class="btn" id ="edit" onclick="change()" >Edit your profile</button>
 
@@ -127,24 +93,7 @@
   
 
   <footer>
-    <div class="row">
-        <div id="bottom-footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="#">Home</a>
-                    <a href="#">Link2</a>
-                    <a href="#">Link3</a>
-                    <a href="#">Link4</a>
-                    <a href="#">Link5</a>
-                    <a href="#">Link6</a>
-                    <a href="#">Link7</a>
-                </div>
-            </div>
-            <p></p>
-            <div class="row"><p>Copyright @2016 by PlatForm Name. All Rights Reserved.<p></div>
-        </div>
-    </div>
-
+    <div class="row" id="footer"></div>
 </footer>
 
 
@@ -171,23 +120,28 @@ function change(){
         .done(function( data ) {
           
           $.ajax( {
-                  url:"/profile/id",
+                  url:"/profile/update",
                   type:"PUT",
                   data:{    
                      "_id" : data._id,
                      "name" : $( "#name" ).val(),
                      "email":$( "#email" ).val(),
                      "dateofbirth":$("#birthdate").val()}
-         }).done();
+         }).done(function(token){
+          alert("updated!");
+         window.location.href='/profile.html';
+          }).fail(function(d){
+            alert("gg");
+          });
 
-          $.post( "/profile/find", {
+         /** $.post( "/profile/find", {
             _id : data._id
           }).done(function(token){
             document.cookie = "token=" + token +";";
             alert("updated!");
             window.location.href='/profile.html';
           });
-
+          **/
        });
         
     
@@ -197,6 +151,6 @@ function change(){
 </script>
 
 
-
+<script type="text/babel" src="js/Header.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </html>
