@@ -7,6 +7,8 @@ var hostSchema = new Schema({
     name: {type:String , default: '', trim: true},
     ownerName: {type:String , default: ''},
     owner:{ type : Schema.ObjectId, ref : 'User' },
+    items:{type :[String]},
+    prices: {type :[Number]},
     description: { type : String, default : '', trim : true },
     comments: [{
         body: { type : String, default : '' },

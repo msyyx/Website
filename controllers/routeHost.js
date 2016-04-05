@@ -16,7 +16,6 @@ router.get('/', function(req, res, next) {
 
       Host.find(function (err, hosts) {
       if (err) return next(err);
-      console.log(hosts);
       res.json(hosts);
       });
 });
@@ -39,7 +38,9 @@ router.post('/add', function(req, res, next) {
                     owner   : decoded._doc._id,
                     ownerName: decoded._doc.username,
                     name    : req.body.name,
-                    description : req.body.description
+                    description : req.body.description,
+                    items: JSON.parse(req.body.items),
+                    prices: JSON.parse(req.body.prices)
                 }).save( function ( err, host, count ){
                     if( err ) return next( err );
                     console.log(host);
