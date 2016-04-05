@@ -41,7 +41,14 @@ router.post('/load', function(req,res,next){
             } else {
                 // if everything is good, save to request for use in other routes
                 req.decoded = decoded;  
-                res.send(decoded._doc);
+                res.send({username : decoded._doc.username,
+                            name: decoded._doc.name,
+                            email:decoded._doc.email,
+                            dateofbirth: decoded._doc.dateofbirth,
+                            recentltvisit: decoded._doc.recentltvisit,
+                            _id : decoded._doc._id
+
+                });
             }
         });
 
@@ -76,7 +83,14 @@ router.get('/:id',function(req,res,next){
     User.findById(req.params.id, function(err, user){
     if (err) return next(err);
  
-    res.json(user);;
+    res.send({username : user.username,
+                            name: user.name,
+                            email:user.email,
+                            dateofbirth: user.dateofbirth,
+                            recentltvisit: user.recentltvisit,
+                            _id : user._id
+
+                });
     });
 })
 

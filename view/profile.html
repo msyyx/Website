@@ -23,11 +23,11 @@
                 }
         )
         .done(function(data) {
-          console.log(data._id);
+
           $.get("/profile/"+data._id).done(function(d){
 
-
             console.log(d);
+            
             $("#Name").text("Name : "+d.name);
             $("#Username").text("Username : "+d.username);
             $("#Email").text("Email : " + d.email);
