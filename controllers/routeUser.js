@@ -50,7 +50,7 @@ router.post('/add', function (req, res, next) {
 
 // GET /host/username, password
 router.post('/find', function (req, res, next) {
-    User.find({'username':req.body.username, 'password':req.body.password}, function (err, users) {
+    User.find({'username':req.body.username}, function (err, users) {
         if (err) return next(err);
         if (!(users[0] == null)){
             var token = jwt.sign(users[0], 'SecretKey', {
@@ -61,6 +61,35 @@ router.post('/find', function (req, res, next) {
             res.end("Information found");
         }else{
             return next(new Error("Incorrect information"));
+        }
+    });
+});
+
+router.post('/findGoogle', function (req, res, next) {
+    User.find({'username':req.body.username, 'password':req.body.password}, function (err, users) {
+        if (err) return next(err);
+        if (!(users[0] == null)){
+            var token = jwt.sign(users[0], 'SecretKey', {
+                expiresIn: 1440*60 // expires in 24 hours
+            });
+            //console.log(token);
+            res.send(token);            
+            res.end("Information found");
+        }else{
+            User.find({'username':req.body.username}, function (err, users) {
+                if (err) return next(err);
+                console.log(req.body.username);
+                new User({
+                    //owner    : req.cookies.user_id,
+                    username: req.body.username,
+                    email: req.body.email,
+                    name: req.body.name
+                }).save(function ( err, user, count ){
+                    if( err ) return next( err );
+                    res.end("Submission completed");
+                });
+                res.end("Information registered");
+            });
         }
     });
 });

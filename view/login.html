@@ -10,6 +10,7 @@
 	<meta charset='UTF-8'>
 	<h1>Log In</h1>
 	<link rel='stylesheet' type='text.css' href='../css/login_style.css'>
+	<meta name="google-signin-client_id" content="770129642398-sf4gqu5klmnd3et8ifultnlohkcafrf8.apps.googleusercontent.com">
 </head>
 <body>
 <div id='body'>
@@ -24,6 +25,7 @@
 	</p>
 	<p>
 	<input type='submit' value='Login'>
+	<div class='g-signin2' data-onsuccess='onSignIn'></div>
 	</p>
 	<p>
 	Not registered?
@@ -37,8 +39,25 @@
 </footer>
 <!-- jQuery -->
 <script src="js/jquery-2.2.1.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script>
+	function onSignIn(googleUser){
+		var profile=googleUser.getBasicProfile();
+
+        $.post( "/user/findGoogle",
+                {
+                    "username": profile.getId(),
+                    "name": profile.getName(),
+                    "email": profile.getEmail()
+                }
+        )
+        .done(function( data ) {
+        	window.location.href='/profile.html';
+        	document.cookie="token=" + data + ";";
+        })
+	}
+
     $( "#userInput" ).submit(function(e){
         e.preventDefault();
         var values = $(this).serialize();
@@ -51,7 +70,7 @@
         )
         .done(function( data ) {
         	alert("Successfully logged in!");
-        	window.location.href='/main.html';
+        	window.location.href='/profile.html';
         	document.cookie="token=" + data + ";";
         })
         .fail(function() {
