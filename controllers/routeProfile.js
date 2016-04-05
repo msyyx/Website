@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     res.sendFile('profile.html', {root: "view/"});
 });
 
-router.put('/id', function(req, res, next) {
+router.put('/update', function(req, res, next) {
 
     User.update( { _id:req.body._id},
       {name:req.body.name,
@@ -23,12 +23,13 @@ router.put('/id', function(req, res, next) {
         if (err) return next(err);
         //res.json(host);
         console.log(user);
+        res.json(user);
     });
 });
 
 router.post('/load', function(req,res,next){
 
-    var token = req.body.token;
+    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
     // decode token
     if (token) {
@@ -57,7 +58,7 @@ router.post('/load', function(req,res,next){
     
 });
 
-router.post('/find', function (req, res, next) {
+/**router.post('/find', function (req, res, next) {
     User.find({'_id':req.body._id,}, function (err, users) {
         if (err) return next(err);
         if (!(users[0] == null)){
@@ -69,5 +70,14 @@ router.post('/find', function (req, res, next) {
         }
     });
 });
+**/
+
+router.get('/:id',function(req,res,next){
+    User.findById(req.params.id, function(err, user){
+    if (err) return next(err);
+ 
+    res.json(user);;
+    });
+})
 
 module.exports = router;

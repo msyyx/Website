@@ -7,59 +7,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
     
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">TEXTT</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">PlatformName</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                        <a href="register.html">Register</a>
-                    </li>
-                    <li>
-                        <a href="main.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="HostPage.html">Host Page </a>
-                    </li>
-                    <li>
-                        <a href="order.html">Order</a>
-                    </li>
-                    <li>
-                        <a href="Profile.html">Profile</a>
-                    </li>
-                    <li>
-                        <a href="search.html">Search</a>
-                    </li>
-                    <li>
-                        <a href="Admin.html">Admin</a>
-                    </li>
+    <script src="https://fb.me/react-0.14.5.js"></script>
+    <script src="https://fb.me/react-dom-0.14.5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-                    <li>
-                        <form autocomplete='on'>
-                         <input type='text' name='search' placeholder='Find food or host'>
-                        
-                        <input type='submit' value='Go!'>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    <div class="row" id="header"></div>
+    
 </head>
 <body>
 <div class="container">
@@ -96,26 +49,9 @@
 </body>
 
 <footer>
-    <div class="row">
-        <div id="bottom-footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="#">Home</a>
-                    <a href="#">Link2</a>
-                    <a href="#">Link3</a>
-                    <a href="#">Link4</a>
-                    <a href="#">Link5</a>
-                    <a href="#">Link6</a>
-                    <a href="#">Link7</a>
-                </div>
-            </div>
-            <p></p>
-            <div class="row"><p>Copyright @2016 by PlatForm Name. All Rights Reserved.<p></div>
-        </div>
-    </div>
-
+    <div class="row" id="footer"></div>
 </footer>
-
+<script type="text/babel" src="js/Header.js"></script>
 <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script>
@@ -123,5 +59,17 @@
     $(function(){
         Carousel.init($(".J_Poster"));
     });
+</script>
+
+<script >
+function checklogin(){
+    var login = document.cookie.split(';') ;
+    if (login.size() > 0){
+        location.href= "Profile.html";
+    }else{
+        alert("log in first");
+        location.href= "login.html";
+    }
+}
 </script>
 </html>
