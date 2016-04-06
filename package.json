@@ -9,6 +9,10 @@
     "express": "^4.13.4",
     "jsonwebtoken": "^5.7.0",
     "mocha": "~2.4.5",
-    "mongoose": "~4.2.7"
-  }
+    "mongoose": "~4.2.7",
+    "superagent": "^1.8.3"
+    },
+  "scripts": {
+    "test": "mocha test"
+    },
 }
