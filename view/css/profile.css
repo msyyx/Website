@@ -1,4 +1,4 @@
-*{margin: 0px; padding: 0px;}
+
 
 body{
     margin-top: 50px;
@@ -21,12 +21,11 @@ body{
     width: 100%;
 }
 footer {
-    height:150px;
     padding: 15px 0;
     width: 100%;
     background-color: #ffa366;
-    margin:0;
-
+    position: relative;
+    bottom:0;
 }
 button {
     color: #ffa366;
@@ -34,16 +33,20 @@ button {
 
 #bottom-footer{
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 #bottom-footer a{
     text-decoration: none;
     color: #626262;
+    font-size: 12px;
+    padding: 0px 20px;
     border-right: 1px solid #ccc;
     font-family: 'OpenSansRegular', Arial, sans-serif;
     font-size: 13px;
     color: #626262;
+    padding: 0 12px;
     text-shadow: 1px 1px 0 rgba(200,200,200,1);
 }
 
@@ -55,10 +58,32 @@ button {
 #editprofile{
     display: none;
 }
-#wrapper{
+.profile{
+     text-align: center;
+}
 
+.profile ul {
+    margin-bottom: 25px;
+    list-style: none;
 }
-html, body
-{
-    height: 100%;
-}
+
+.profile li { 
+    width: 300px; 
+    margin-left: 30%;
+    text-align: left;
+    font-style: bold; 
+    font-size: 20px; 
+    font-weight: 10px;
+    background-color:lightblue;
+ }
+
+
+.orange { border-left: 5px solid #F5876E;margin-top: 20px;height: 60px; }
+
+.blue{ border-left: 5px solid #61A8DC; margin-top: 20px;height: 60px; }
+
+.green{ border-left: 5px solid #8EBD40; margin-top: 20px;height: 60px; }
+
+.purple { border-left: 5px solid #988CC3; margin-top: 20px;height: 30%; }
+
+.gold { border-left: 5px solid #D8C86E; font-style: italic; padding-left: 30px; }

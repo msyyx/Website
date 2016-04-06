@@ -28,10 +28,10 @@
 
             console.log(d);
             
-            $("#Name").text("Name : "+d.name);
-            $("#Username").text("Username : "+d.username);
-            $("#Email").text("Email : " + d.email);
-            $("#Birthdate").text("Birthdate : "+d.dateofbirth);
+            $("#Name").text(d.name);
+            $("#Username").text("Username :  "+d.username);
+            $("#Email").text("Email :  " + d.email);
+            $("#Birthdate").text("Birthdate :  "+d.dateofbirth);
             $("#recently").text(d.recentlyvisit);
         });
 
@@ -47,21 +47,23 @@
 
 
 <body>
-  <div class="container" id ="profile">
+  <div  class = "profile" id ="profile">
 
-  <h1>Profile Information</h1>
+  <h1 style="padding-top: 10%;">Profile Information</h1>
   <hr>
-  <img src="img/profile.jpg">
+  <img style="display:inline;" src="img/profile.jpg">
+  <h2 id ="Name" style="display:inline" class="gold"> </h2>
+  <ul>
+  
+  <li id="Username" class="orange"></li>
+  <li id="Birthdate" class="blue"></li>
+  <li id="Email" class="green"></li>
+  <li class="purple"> Recently visited:
 
-  <h2 id ="Name"> </h2>
-  <h3 id="Username"></h3>
-  <h3 id="Birthdate"></h3>
-  <h3 id="Email"></h3>
-  <h3>Recently visited</h3>
-
-  <p id ="recently visit"> </p>
-
-  <button type="button" class="btn" id ="edit" onclick="change()" >Edit your profile</button>
+  <p id ="recently visit">zzzz </p>
+  </li>
+  </ul>
+  <button type="button" class="btn" id ="edit" onclick="change()"  >Edit your profile</button>
 
   </div>
 
@@ -71,23 +73,23 @@
     <h2> Edit your profile now</h2> 
     <hr>
         <form id="profileInput">
-            <div class="form-group">
+            <div >
                 <label for="username">Username</label>
                 <p id="username"></p>
             </div>
-            <div class="form-group">
+            <div class="orange">
                 <label for="name">name</label>
                 <input type="text" class="form-control" id="name" placeholder="Name" required>
             </div>
-            <div class="form-group">
+            <div class="blue">
                 <label for="dateofbirth">Birthdate</label>
                 <input type="date" class="form-control" id="birthdate" placeholder="birthday" required>
             </div>
-            <div class="form-group">
+            <div class="green">
                 <label for="email">Contact Email</label>
                 <input type="text" class="form-control" id="email" placeholder="xxxx@gmail.com" required>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn">Submit</button>
         </form>
   </div>
 
