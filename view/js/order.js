@@ -2,6 +2,8 @@
 //var ReactDOM = require('react-dom');
 
 
+
+
 var FetchOrder = React.createClass( {
   getInitialState: function() {
     return{
@@ -10,7 +12,21 @@ var FetchOrder = React.createClass( {
   },
 
   componentDidMount: function() {
-    this.serverRequest = $.get(this.props.url, function(res) {
+    var cookie =  document.cookie.split(';')
+    var token;
+    var username;
+    var loggedIn = false;
+    for (var i = 0;i<cookie.length; i++) {
+      if (cookie[i].split('=')[0] == "token"){
+          token = cookie[i].split('=')[1];
+
+      }
+    }
+    this.serverRequest = $.post(this.props.url,
+      {
+      'token' : token
+      },
+      function(res) {
       var response = res;
       this.setState({
         file : response
@@ -27,14 +43,23 @@ var FetchOrder = React.createClass( {
 });
 
 var DisplayOrder = React.createClass( {
+
   render: function() {
     var order = this.props.order;
 
     var table = [];
+    console.log(order.length);
     for (var i = 0; i < order.length; i++) {
       var row = [];
-      row.push(order[i].name);
-      row.push(order[i]._id);
+      row.push(order[i].userName);
+      row.push(order[i].date);
+      row.push(order[i].hostName);
+      if(order[i].comment == ''){
+        row.push(<p><a href = {"/order/comment/" + order[i].hostName}> Write a comment </a></p>);
+      }
+      else {
+        row.push(<p> {order[i].comment} </p>);
+      }
       table.push(row);
     }
     var tableStyle = {
@@ -46,8 +71,11 @@ var DisplayOrder = React.createClass( {
       <table style={tableStyle}>
 
       <thead>
-        <td style={tableStyle}> name </td>
-        <td style={tableStyle}> id </td>
+        <td style={tableStyle}> Name </td>
+        <td style={tableStyle}> Date </td>
+        <td style={tableStyle}> HostID </td>
+        <td style={tableStyle}> Comment </td>
+
       </thead>
       <tbody>
       {
@@ -71,7 +99,9 @@ var DisplayOrder = React.createClass( {
   }
 });
 
+//var timer = setInterval(checkLogin, 10);
 
-
-
-ReactDOM.render(<FetchOrder url = "http://localhost:3000/host/show"/>,document.getElementById("new-div"));
+//var checkLogin = function() {
+  //if(loggedIn) {
+  //  window.clearInterval(timer);
+  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/show" />,document.getElementById("new-div"));

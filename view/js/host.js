@@ -17,6 +17,36 @@ function initMap() {
     });
 }
 
+var cookie =  document.cookie.split(';')
+var token;
+var username;
+var loggedIn = false;
+for (var i = 0;i<cookie.length; i++) {
+  if (cookie[i].split('=')[0] == "token"){
+      token = cookie[i].split('=')[1];
+
+  }
+}
+$.post( "/profile/load",
+            {'token' :token
+
+            }
+    )
+    .done(function(data) {
+
+      $.get("/profile/"+data._id +"/info").done(function(d){
+        username = d.username;
+        console.log(d.username);
+        loggedIn = true;
+      })
+    })
+    .error(function(err){
+      alert("Please log in");
+      loggedIn = false;
+    })
+
+
+
 function mapResize(){
     console.log("?");
     google.maps.event.trigger(map, 'resize');
@@ -217,6 +247,34 @@ var Order = React.createClass({
     },
 
   HandleClick: function(event) {
+    /*var cookie =  document.cookie.split(';')
+    var token;
+    var username;
+    for (var i = 0;i<cookie.length; i++) {
+      if (cookie[i].split('=')[0] == "token"){
+          token = cookie[i].split('=')[1];
+
+      }
+    }
+    $.post( "/profile/load",
+                {'token' :token
+
+                }
+        )
+        .done(function(data) {
+
+          $.get("/profile/"+data._id +"/info").done(function(d){
+            username = d.username;
+            console.log(d.username);
+          })
+        })
+        .error(function(err){
+          alert("Please log in");
+        })*/
+    if(!loggedIn){
+          alert("please log in first");
+        }
+    else {
     console.log("placeOrder clicked");
     var str = document.URL;
     str = str.split('/');
@@ -227,12 +285,15 @@ var Order = React.createClass({
     var dateStr = date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
 
     var orderDetail = {name: 2333, quantity: 6666};
+    var hostID = document.URL;
+    hostID = hostID.split('/');
+    hostID = hostID[hostID.length - 1];
 
     $.post("/order/add", {
-      "id": document.URL,
+      "id": hostID,
       "date" : dateStr,
       "orderDetail" : JSON.stringify(orderDetail),
-      "username" : "hgkjfklds"
+      "username" : username
     })
     .success(function(res) {
       alert("OrderPlaced");
@@ -240,7 +301,7 @@ var Order = React.createClass({
     .error(function(res) {
       alert("db error");
     });
-  },
+  }},
     AddItem: function(index){
         this.state.myOrder.indexes.push(index);
         this.state.myOrder.items.push(this.props.data.items[index]);
