@@ -27,7 +27,7 @@ var SearchResult = React.createClass({
     render:function(){
         return(
             <div>
-                <h4>Searching: {this.state.data.keyword}</h4>
+                <h4>Searching: {searchCtx}</h4>
                 <p>{this.state.data.list.length} results were found.</p>
                 <hr/>
             <table>
