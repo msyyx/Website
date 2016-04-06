@@ -23,17 +23,18 @@ var LoginHeader = React.createClass({
                             <li>
                                 <a href="/main.html">Home</a>
                             </li>
-                            <li>
-                                <a href="/HostPage.html">Host Page </a>
-                            </li>
                             
                             <li>
                                 <a href="/search.html">Search</a>
                             </li>
-                            <li className="pull-right">
-                                <a href="/login.html">Login</a>
+
+                        </ul>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/login.html"><b>Login</b></a>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </nav>
@@ -73,27 +74,23 @@ var LogoutHeader = React.createClass({
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-left">
                             <li>
-                                <a href="/HostPage.html">Host</a>
-                            </li>
-                            <li>
-                                <a href="/profile.html">Profile</a>
-                            </li>
-                            <li>
-                                <a href="/main.html">Home</a>
-                            </li>
-                            
-                            <li>
                                 <a href="/search.html">Search</a>
                             </li>
                             <li>
                                 <a href="/newhost.html">New host</a>
                             </li>
-                             
-                            <li className="pull-right">
+
+                            
+                        </ul>
+
+                        <ul className="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/profile.html">Profile</a>
+                            </li>
+                            <li className="float-right">
                                 <a onClick= {this.logout}> Logout</a>
                             </li>
-                            
-                        </ul>   
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -141,3 +138,5 @@ if (login){
 
 ReactDOM.render(<Footer/>, document.getElementById('footer'));
 
+
+console.log("wait");
