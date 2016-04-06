@@ -44,7 +44,7 @@ var FetchOrder = React.createClass( {
   render: function() {
     return (
       //should put everything here in a table
-      <DisplayOrder order = {this.state.file} />
+        <DisplayOrder order = {this.state.file} comment = {this.props.comment} />
     );
   }
 });
@@ -63,12 +63,15 @@ var DisplayOrder = React.createClass( {
       row.push(order[i].hostName);
       row.push(order[i].orderDetail);
       row.push(order[i].hostOwner);
-      if(order[i].comment == ''){
-        row.push(<p><a href = {"/order/comment/" + order[i].hostID}> Write a comment </a></p>);
+      if (this.props.comment == "yes"){
+        if(order[i].comment == ''){
+          row.push(<p><a href = {"/order/comment/" + order[i].hostID}> Write a comment </a></p>);
+        }
+        else {
+          row.push(<p> {order[i].comment} </p>);
+        }
       }
-      else {
-        row.push(<p> {order[i].comment} </p>);
-      }
+
       table.push(row);
     }
     var tableStyle = {
@@ -86,6 +89,7 @@ var DisplayOrder = React.createClass( {
         <td > HostName </td>
         <td> Detail </td>
         <td> hostOwner </td>
+        
         <td > Comment </td>
 
 
@@ -117,5 +121,5 @@ var DisplayOrder = React.createClass( {
 //var checkLogin = function() {
   //if(loggedIn) {
   //  window.clearInterval(timer);
-  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/show" />,document.getElementById("new-div"));
-  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/myorder" />,document.getElementById("new-div2"));
+  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/show"  comment = "yes"/>,document.getElementById("new-div"));
+  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/myorder" comment = "no" />,document.getElementById("new-div2"));

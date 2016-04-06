@@ -185,12 +185,14 @@ var Reviews = React.createClass({
       var data = this.props.file;
       var llist = [];
       noViews = data.length;
+      average = 0;
       for (var i = 0; i < data.length; i++) {
         var list = [];
-        average = (average + data[i].rate) / (i + 1);
+        average = (average * i + data[i].rate) / (i + 1);
         list.push(data[i].date);
         list.push(data[i].comment);
         list.push(data[i].rate);
+        list.push(data[i].userName);
         llist.push(list);
       }
         return (
@@ -203,13 +205,16 @@ var Reviews = React.createClass({
                   <div className="row">
                       <div className="col-md-12">
                           <p> Rating {ist[2]} </p>
-                          Anonymous
+                          {ist[3]}
                           <span className="pull-right">- {ist[0]}</span>
                           <p></p>
                           <p> {ist[1]} </p>
                       </div>
                   </div>
+                  <br></br>
+                  <br></br>
                 </div>
+
             )
           })
         }
