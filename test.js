@@ -1,6 +1,6 @@
 var assert = require('assert');
 var http = require('http');
-var server = require('./server.js');
+var server = require('./server');
 var routeUser = require('./controllers/routeUser.js');
 var fs = require('fs');
 var request = require('request');
@@ -47,6 +47,8 @@ describe('HTTP Server Test', function(){
       });
     });
   });
+
+  
   describe('Test login', function(){
     it('should successfully login', function (done){
       userInfo = {username:test, password:test, email:test@gmail.com};
