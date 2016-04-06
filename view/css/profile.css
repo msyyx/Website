@@ -58,9 +58,7 @@ button {
 #editprofile{
     display: none;
 }
-.profile{
-     text-align: center;
-}
+
 
 .profile ul {
     margin-bottom: 25px;
@@ -69,7 +67,6 @@ button {
 
 .profile li { 
     width: 300px; 
-    margin-left: 30%;
     text-align: left;
     font-style: bold; 
     font-size: 20px; 
