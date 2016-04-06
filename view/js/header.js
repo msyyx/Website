@@ -1,5 +1,5 @@
 
-var Header = React.createClass({
+var LoginHeader = React.createClass({
     render: function() {
         return (
 
@@ -29,21 +29,11 @@ var Header = React.createClass({
                             <li>
                                 <a href="/HostPage.html">Host Page </a>
                             </li>
-                            <li>
-                                <a href="/order.html">Order</a>
-                            </li>
-                            <li>
-                                <a href="/Profile.html">Profile</a>
-                            </li>
+                            
                             <li>
                                 <a href="/search.html">Search</a>
                             </li>
-                            <li>
-                                <a href="/Admin.html">Admin</a>
-                            </li>
-                            <li>
-                                <a href="/host">New host</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -52,6 +42,63 @@ var Header = React.createClass({
         );
     }
 });
+
+var LogoutHeader = React.createClass({
+
+    logout: function() {
+    console.log("i am here");
+    document.cookie = '';
+    ReactDOM.render(<LoginHeader/>, document.getElementById('header'));
+    },
+    render: function() {
+        return (
+
+            <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div className="container">
+
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span className="sr-only">TEXT</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" href="/">PlatformName</a>
+                    </div>
+                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul className="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="/HostPage.html">Host</a>
+                            </li>
+                            <li>
+                                <a href="/profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a href="/main.html">Home</a>
+                            </li>
+                            
+                            <li>
+                                <a href="/search.html">Search</a>
+                            </li>
+                            <li>
+                                <a href="/newhost.html">New host</a>
+                            </li>
+
+                             
+                            <li>
+                                <a onclick="this.logout"> Logout</a>
+                            </li>
+
+                            
+                        </ul>   
+                    </div>
+                </div>
+            </nav>
+
+        );
+    }
+});
+
 
 
 var Footer = React.createClass({
@@ -72,8 +119,17 @@ var Footer = React.createClass({
     }
 });
 
+
+
+var cookie = document.cookie.split(";")
+console.log(cookie.length);
+if (cookie.length>0){
+    ReactDOM.render(<LogoutHeader/>, document.getElementById('header'));
+}else{
+    ReactDOM.render(<LoginHeader/>, document.getElementById('header'));
+}
 // Render our react components within the html DOM
-ReactDOM.render(<Header/>, document.getElementById('header'));
+
 
 ReactDOM.render(<Footer/>, document.getElementById('footer'));
 
