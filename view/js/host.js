@@ -186,9 +186,15 @@ var Reviews = React.createClass({
       var llist = [];
       noViews = data.length;
       average = 0;
+      var ratedNo = 0;
       for (var i = 0; i < data.length; i++) {
         var list = [];
-        average = (average * i + data[i].rate) / (i + 1);
+        var rate = data[i].rate;
+        if (rate != 0) {
+            average = (average * ratedNo + rate) / (ratedNo + 1);
+            ratedNo++;
+        }
+
         list.push(data[i].date);
         list.push(data[i].comment);
         list.push(data[i].rate);
