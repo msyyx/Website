@@ -21,10 +21,11 @@ router.get("/comment/:hostname", function(req,res) {
 
 router.post("/add", function(req,res, next) {
   new History({
-    hostName: req.body.id,
+    hostID: req.body.id,
     date: req.body.date,
     orderDetail: req.body.orderDetail,
     userName: req.body.username,
+    hostName: req.body.hostName,
     comment: ''
   }).save(function(err, host, count) {
     if(err){
@@ -45,13 +46,14 @@ router.get('/:id', function (req, res) {
 
 router.post('/update', function(req,res) {
   console.log("hi");
-  var hostname = req.body.hostname;
+  var hostID = req.body.hostID;
   var comment = req.body.comment;
   var username = req.body.username;
-  console.log(hostname);
+  var rate = req.body.rate;
+  console.log(hostID);
   console.log(comment);
   console.log(username);
-  History.update({'hostName' : hostname, 'userName' : username, 'comment' : ''}, {'comment' : comment}, function(err, data) {
+  History.update({'hostID' : hostID, 'userName' : username, 'comment' : ''}, {'comment' : comment, 'rate' : rate}, function(err, data) {
     if(err) {
       console.log("err");
       res.status(403);
@@ -59,6 +61,18 @@ router.post('/update', function(req,res) {
     console.log('good');
     res.end();
   })
+});
+
+router.get('/showhost/:hostID', function(req,res) {
+  var hostID = req.params.hostID;
+  console.log("looking for host");
+  console.log(hostID);
+  History.find({'hostID' : hostID}, function(err,data) {
+    //if (err) res.status(403);
+    console.log(data);
+
+    res.json(data);
+  });
 });
 
 router.post('/show', function (req,res) {

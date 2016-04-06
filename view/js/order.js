@@ -55,7 +55,7 @@ var DisplayOrder = React.createClass( {
       row.push(order[i].date);
       row.push(order[i].hostName);
       if(order[i].comment == ''){
-        row.push(<p><a href = {"/order/comment/" + order[i].hostName}> Write a comment </a></p>);
+        row.push(<p><a href = {"/order/comment/" + order[i].hostID}> Write a comment </a></p>);
       }
       else {
         row.push(<p> {order[i].comment} </p>);
@@ -73,7 +73,7 @@ var DisplayOrder = React.createClass( {
       <thead>
         <td style={tableStyle}> Name </td>
         <td style={tableStyle}> Date </td>
-        <td style={tableStyle}> HostID </td>
+        <td style={tableStyle}> HostName </td>
         <td style={tableStyle}> Comment </td>
 
       </thead>

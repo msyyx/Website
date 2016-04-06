@@ -14,7 +14,9 @@
    userName: {type: String, default: ''},
    date: {type: String, default: ''},
    orderDetail: {type: String, default: ''},
-   comment: {type: String, default: ''}
+   comment: {type: String, default: ''},
+   hostID: {type: String, default: ''},
+   rate: {type: String, default: ''}
  });
 
  module.exports = mongoose.model('History', historySchema );
