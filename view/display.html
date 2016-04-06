@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Display Profile Page</title> 
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/profile.css" rel="stylesheet">
+
+  <script src="https://fb.me/react-0.14.5.js"></script>
+  <script src="https://fb.me/react-dom-0.14.5.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="/js/jquery-2.2.1.min.js"></script>
+  <div class="row" id="header"></div>
+
+</head>
+
+<body>
+  <div  class = "profile" id ="profile">
+
+  <h1 style="padding-top: 5%;">Profile Information</h1>
+  <hr>
+  <img style="display:inline;" src="/img/profile.jpg">
+  <h2 id ="Name" style="display:inline" class="gold"> </h2>
+  <ul>
+  
+  <li id="Username" class="orange"></li>
+  <li id="Birthdate" class="blue"></li>
+  <li id="Email" class="green"></li>
+  <li class="purple"> Recently visited:
+
+  <p id ="recently visit"> </p>
+  </li>
+  </ul>
+  
+
+  </div>
+
+  
+ <footer>
+    <div class="row" id="footer"></div>
+</footer>
+
+</body>
+<script type="text/babel" src="/js/Header.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script >
+
+        $.ajax({
+            url: document.URL + "/info",
+            dataType: 'json',
+            cache: false,
+            success: function(d) {
+                $("#Name").text(d.name);
+                $("#Username").text("Username :  "+d.username);
+                $("#Email").text("Email :  " + d.email);
+                $("#Birthdate").text("Birthdate :  "+d.dateofbirth);
+                $("#recently").text(d.recentlyvisit);
+                console.log(d);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(document.URL + "/info", status, err.toString());
+            }.bind(this)
+        });
+
+
+
+</script>
+</html>
