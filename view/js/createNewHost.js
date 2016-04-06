@@ -3,8 +3,16 @@ var limit = 50;
 
 $( "#hostInput" ).submit(function(e){
     e.preventDefault();
+    var token = null;
 
-    if(document.cookie.split('=')[0] != "token"){
+    for (var i = 0;i<cookie.length; i++) {
+        var name = cookie[i].split('=')[0].replace(' ' ,'');
+        if (name == "token"){
+            token = cookie[i].split('=')[1];
+
+        }
+    }
+    if(token == null){
         alert("User not login! Redirecting...");
         window.location.href = "/login.html";
     }
