@@ -3,6 +3,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Host = require('../models/host.js');
 var History = require('../models/history.js');
+var jwt = require('jsonwebtoken');
+
 
 //var app = express();
 
@@ -10,6 +12,11 @@ var History = require('../models/history.js');
 
 router.get("/", function(req,res) {
   res.sendFile('order.html', {root:"view/"});
+});
+
+router.get("/comment/:hostname", function(req,res) {
+  //console.log(321312);
+  res.sendFile('comment.html', {root:"view/"});
 });
 
 router.post("/add", function(req,res, next) {
@@ -26,6 +33,58 @@ router.post("/add", function(req,res, next) {
     console.log(host);
     res.end();
   });
+});
+
+router.get('/:id', function (req, res) {
+  var username = req.params.id;
+  History.find({'userName' : username}, function(err, data) {
+    res.json(data);
+
+  })
+});
+
+router.post('/update', function(req,res) {
+  console.log("hi");
+  var hostname = req.body.hostname;
+  var comment = req.body.comment;
+  var username = req.body.username;
+  console.log(hostname);
+  console.log(comment);
+  console.log(username);
+  History.update({'hostName' : hostname, 'userName' : username, 'comment' : ''}, {'comment' : comment}, function(err, data) {
+    if(err) {
+      console.log("err");
+      res.status(403);
+    }
+    console.log('good');
+    res.end();
+  })
+});
+
+router.post('/show', function (req,res) {
+  console.log(5677);
+  var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+      // verifies secret and checks exp
+      jwt.verify(token, 'SecretKey', function(err, decoded) {
+          if (err) {
+            console.log(1234);
+              return res.json({ success: false, message: 'Failed to authenticate token.' });
+          } else {
+              // if everything is good, save to request for use in other routes
+              req.decoded = decoded;
+              console.log(decoded._doc.username);
+              History.find({'userName' : decoded._doc.username}, function(err, data) {
+                res.json(data);
+                console.log(1111);
+              })
+
+          }
+      });
+    }
 });
 
 //router.get("/")
