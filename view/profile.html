@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Profile Page</title> 
+  <title>Profile Page</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/profile.css" rel="stylesheet">
 
@@ -13,7 +13,7 @@
   <script src="js/jquery-2.2.1.min.js"></script>
   <div class="row" id="header"></div>
     <meta charset="UTF-8">
-    
+
     <script>
     var cookie =  document.cookie.split(';')
     var token;
@@ -21,13 +21,13 @@
         var name = cookie[i].split('=')[0].replace(' ','');
       if (name == "token"){
           token = cookie[i].split('=')[1];
-          
+
       }
     };
 
     $.post( "/profile/load",
                 {'token' :token
-                
+
                 }
         )
         .done(function(data) {
@@ -40,7 +40,7 @@
             $("#Username").text("Username :  "+d.username);
             $("#Email").text("Email :  " + d.email);
             $("#Birthdate").text("Birthdate :  "+d.dateofbirth);
-            $("#recently").text(d.recentlyvisit);
+            //$("#recently").text(d.recentlyvisit);
         });
 
         })
