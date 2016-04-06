@@ -8,8 +8,10 @@ var hostSchema = new Schema({
     ownerName: {type:String , default: ''},
     owner:{ type : Schema.ObjectId, ref : 'User' },
     items:{type :[String]},
+    hours:{type :[String]},
     prices: {type :[Number]},
     description: { type : String, default : '', trim : true },
+    contact:{type : String},
     comments: [{
         body: { type : String, default : '' },
         user: { type : Schema.ObjectId, ref : 'User' },

@@ -37,10 +37,12 @@ router.post('/add', function(req, res, next) {
                 new Host({
                     owner   : decoded._doc._id,
                     ownerName: decoded._doc.username,
+                    contact: req.body.contact,
                     name    : req.body.name,
                     description : req.body.description,
                     items: JSON.parse(req.body.items),
-                    prices: JSON.parse(req.body.prices)
+                    prices: JSON.parse(req.body.prices),
+                    hours: JSON.parse(req.body.hours),
                 }).save( function ( err, host, count ){
                     if( err ) return next( err );
                     console.log(host);
@@ -72,7 +74,6 @@ router.get('/:id/info', function(req, res, next) {
     console.log("looking for info");
     Host.findById(req.params.id, function (err, host) {
         if (err) return next(err);
-        console.log(host.items.length);
         res.json(host);
     });
 });

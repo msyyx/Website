@@ -43,7 +43,8 @@ var HostInfo = React.createClass({
 
         return {data: {
             items:[],
-            prices:[]
+            prices:[],
+            hours:["-","-","-","-","-","-","-"]
         }};
     },
     componentDidMount: function() {
@@ -108,18 +109,15 @@ var DetailedInfo = React.createClass({
 
                 <div className="row">
                     <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
-                        <Tab eventKey={1} title="Reviews"><br/><Reviews/></Tab>
+                        <Tab eventKey={1} title="Reviews"><br/><Reviews data={this.props.data}/></Tab>
                         <Tab eventKey={2} title="Order" ><Order data={this.props.data}/></Tab>
-                        <Tab eventKey={3} title="Info"><Extra/></Tab>
+                        <Tab eventKey={3} title="Info"><Extra data={this.props.data}/></Tab>
                     </Tabs>
                 </div>
                 <br/>
-
             </div>
-
         );
     }
-
 
 });
 
@@ -179,7 +177,6 @@ var Reviews = React.createClass({
         </div>
         )
     }
-
 });
 
 var Extra = React.createClass({
@@ -193,15 +190,15 @@ var Extra = React.createClass({
                 <div id="hour">
                     <h3>Hours:</h3>
 
-                    <b>Mon</b>	7:00 am - 6:00 pm<br/>
-                    <b>Tue</b>	7:00 am - 6:00 pm<br/>
-                    <b>Wed</b>	7:00 am - 6:00 pm<br/>
-                    <b>Thu</b>	7:00 am - 6:00 pm<br/>
-                    <b>Fri</b>	7:00 am - 6:00 pm<br/>
-                    <b>Sat</b>	9:00 am - 5:00 pm<br/>
-                    <b>Sun</b>	9:00 am - 3:00 pm<br/><br/>
+                    <b>Mon</b> {this.props.data.hours[0]}<br/>
+                    <b>Tue</b> {this.props.data.hours[1]}<br/>
+                    <b>Wed</b>	{this.props.data.hours[2]}m<br/>
+                    <b>Thu</b>	{this.props.data.hours[3]}<br/>
+                    <b>Fri</b>	{this.props.data.hours[4]}<br/>
+                    <b>Sat</b>	{this.props.data.hours[5]}<br/>
+                    <b>Sun</b>	{this.props.data.hours[6]}<br/><br/>
 
-                    <b>Contact:</b> (416)-666-6666
+                    <b>Contact:</b> {this.props.data.contact}
                 </div>
         </div>
         </div>
@@ -252,15 +249,12 @@ var Order = React.createClass({
                             <td><b>Price</b></td>
                             <td> </td>
                         </tr>
-
                         {this.props.data.items.map(function(item, i){
                             return(
                                 <tr><td>{i+1}.{item}</td><td>{this.props.data.prices[i]}</td><td><button type="button" className="btn btn-warning">+</button></td></tr>
                             )
                         }.bind(this))
                         }
-
-
                     </table>
 
                     <hr/>

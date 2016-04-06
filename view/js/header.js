@@ -61,7 +61,7 @@ var Footer = React.createClass({
             <div id="bottom-footer">
                 <div className="row">
                     <div className="col-md-12">
-                        <a href="http://web.cs.toronto.edu/">Computer Science @ University of Toronto</a>
+                        <a href="#">Computer Science @ University of Toronto</a>
 
                     </div>
                 </div>
