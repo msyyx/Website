@@ -34,7 +34,7 @@
 
           $.get("/profile/"+data._id +"/info").done(function(d){
 
-            console.log(d);
+            //console.log(d);
             
             $("#Name").text(d.name);
             $("#Username").text("Username :  "+d.username);
@@ -46,7 +46,7 @@
         })
         .fail(function() {
           alert("Please log in first ");
-          window.position.href('login.html');
+            window.location.href='/login.html';
         });
     </script>
 

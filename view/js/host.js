@@ -25,7 +25,8 @@ var token;
 var username;
 var loggedIn = false;
 for (var i = 0;i<cookie.length; i++) {
-  if (cookie[i].split('=')[0] == "token"){
+    var itemName = cookie[i].split('=')[0].replace(' ','');
+    if (itemName == "token"){
       token = cookie[i].split('=')[1];
 
   }
@@ -226,7 +227,6 @@ var Extra = React.createClass({
 
                 <div id="hour">
                     <h3>Hours:</h3>
-
                     <b>Mon</b> {this.props.data.hours[0]}<br/>
                     <b>Tue</b> {this.props.data.hours[1]}<br/>
                     <b>Wed</b>	{this.props.data.hours[2]}m<br/>

@@ -45,8 +45,14 @@ var LoginHeader = React.createClass({
 var LogoutHeader = React.createClass({
 
     logout: function() {
-    console.log("i am here");
-    document.cookie = '';
+        console.log("i am here");
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+        document.cookie = cookies[i].split("=")[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+            console.log(document.cookies);
+    }
+
     ReactDOM.render(<LoginHeader/>, document.getElementById('header'));
     },
     render: function() {
