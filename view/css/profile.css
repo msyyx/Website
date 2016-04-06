@@ -1,4 +1,4 @@
-*{margin: 0px; padding: 0px;}
+
 
 body{
     margin-top: 50px;
@@ -58,3 +58,32 @@ button {
 #editprofile{
     display: none;
 }
+.profile{
+     text-align: center;
+}
+
+.profile ul {
+    margin-bottom: 25px;
+    list-style: none;
+}
+
+.profile li { 
+    width: 300px; 
+    margin-left: 30%;
+    text-align: left;
+    font-style: bold; 
+    font-size: 20px; 
+    font-weight: 10px;
+    background-color:lightblue;
+ }
+
+
+.orange { border-left: 5px solid #F5876E;margin-top: 20px;height: 60px; }
+
+.blue{ border-left: 5px solid #61A8DC; margin-top: 20px;height: 60px; }
+
+.green{ border-left: 5px solid #8EBD40; margin-top: 20px;height: 60px; }
+
+.purple { border-left: 5px solid #988CC3; margin-top: 20px;height: 30%; }
+
+.gold { border-left: 5px solid #D8C86E; font-style: italic; padding-left: 30px; }
