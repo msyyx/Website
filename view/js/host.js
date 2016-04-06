@@ -19,7 +19,7 @@ function initMap() {
         title: 'location!'
     });
 }
-
+/*
 var cookie =  document.cookie.split(';')
 var token;
 var username;
@@ -48,6 +48,7 @@ $.post( "/profile/load",
       alert("Please log in");
       loggedIn = false;
     })
+    */
 
 var hostID;
 
@@ -254,7 +255,7 @@ var Order = React.createClass({
     },
 
   HandleClick: function(event) {
-    /*var cookie =  document.cookie.split(';')
+    var cookie =  document.cookie.split(';')
     var token;
     var username;
     for (var i = 0;i<cookie.length; i++) {
@@ -277,9 +278,10 @@ var Order = React.createClass({
         })
         .error(function(err){
           alert("Please log in");
-        })*/
+        })
     if(!loggedIn){
           alert("please log in first");
+        window.location.href='/login.html';
         }
     else {
     console.log("placeOrder clicked");

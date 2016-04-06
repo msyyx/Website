@@ -1,5 +1,9 @@
 
 var LoginHeader = React.createClass({
+    handleSearch:function(){
+      var val = $("#searchVal").val();
+        location.href= "search/"+val;
+    },
     render: function() {
         return (
 
@@ -13,22 +17,22 @@ var LoginHeader = React.createClass({
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="/">PlatformName</a>
+                        <a className="navbar-brand" href="/">GoodEats</a>
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-left">
                             <li>
                                 <a href="/register.html">Register</a>
                             </li>
-                            <li>
-                                <a href="/main.html">Home</a>
-                            </li>
-                            
-                            <li>
-                                <a href="/search.html">Search</a>
-                            </li>
-
                         </ul>
+
+                        <form className="navbar-form navbar-right" role="search" id ="search">
+                            <div className="form-group">
+                                <input  id ="searchVal" type="text" className="form-control" placeholder="Search"/>
+                            </div>
+                            <button type="button" onClick = {this.handleSearch} className="btn btn-default">Submit</button>
+                        </form>
+
                         <ul className="nav navbar-nav navbar-right">
                             <li>
                                 <a href="/login.html"><b>Login</b></a>
@@ -44,7 +48,10 @@ var LoginHeader = React.createClass({
 });
 
 var LogoutHeader = React.createClass({
-
+    handleSearch:function(){
+        var val = $("#searchVal").val();
+        location.href= "search/"+val;
+    },
     logout: function() {
         console.log("i am here");
         var cookies = document.cookie.split(";");
@@ -73,13 +80,10 @@ var LogoutHeader = React.createClass({
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-left">
-                            <li>
-                                <a href="/search.html">Search</a>
-                            </li>
+
                             <li>
                                 <a href="/newhost.html">New host</a>
                             </li>
-
                             
                         </ul>
 
@@ -91,6 +95,12 @@ var LogoutHeader = React.createClass({
                                 <a onClick= {this.logout}> Logout</a>
                             </li>
                         </ul>
+                        <form className="navbar-form navbar-right" role="search" id ="search">
+                            <div className="form-group">
+                                <input  id ="searchVal" type="text" className="form-control" placeholder="Search"/>
+                            </div>
+                            <button type="button" onClick = {this.handleSearch} className="btn btn-default">Submit</button>
+                        </form>
                     </div>
                 </div>
             </nav>
