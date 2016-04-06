@@ -207,6 +207,14 @@ var Extra = React.createClass({
 });
 
 var Order = React.createClass({
+    getInitialState: function() {
+        return {myOrder: {
+            indexes:[],
+            items:[],
+            prices:[],
+            total: 0
+        }};
+    },
 
   HandleClick: function(event) {
     console.log("placeOrder clicked");
@@ -233,7 +241,20 @@ var Order = React.createClass({
       alert("db error");
     });
   },
-
+    AddItem: function(index){
+        this.state.myOrder.indexes.push(index);
+        this.state.myOrder.items.push(this.props.data.items[index]);
+        this.state.myOrder.prices.push(this.props.data.prices[index]);
+        this.state.myOrder.total += this.props.data.prices[index];
+        this.setState({myOrder: this.state.myOrder});
+    },
+    RemoveItem: function(index){
+        this.state.myOrder.total -= this.state.myOrder.prices[index];
+        this.state.myOrder.indexes.splice(index, 1);
+        this.state.myOrder.items.splice(index, 1);
+        this.state.myOrder.prices.splice(index, 1);
+        this.setState({myOrder: this.state.myOrder});
+    },
 
     render: function(){
       var clickHandler = this.HandleClick;
@@ -243,6 +264,7 @@ var Order = React.createClass({
                 <div role="tabpanel" className="tab-pane" id="order">
 
                     <table>
+                        <tbody>
                         <tr>
                             <td><b>Item</b></td>
                             <td><b>Price</b></td>
@@ -250,13 +272,27 @@ var Order = React.createClass({
                         </tr>
                         {this.props.data.items.map(function(item, i){
                             return(
-                                <tr><td>{i+1}.{item}</td><td>{this.props.data.prices[i]}</td><td><button type="button" className="btn btn-warning">+</button></td></tr>
+                                <tr key={i}><td>{i+1}.{item}</td><td>{this.props.data.prices[i]}</td><td>
+                                    <button type="button" className="btn btn-warning" onClick = {this.AddItem.bind(this , i)}>+</button></td></tr>
                             )
                         }.bind(this))
                         }
+                        </tbody>
                     </table>
-
                     <hr/>
+                    <h3>My Order</h3>
+                    <table id="myOrderTbl"><tbody>
+                    {this.state.myOrder.indexes.map(function(num, i){
+                        return(
+                            <tr key={i}><td>{num + 1}.{this.state.myOrder.items[i]}</td><td>{this.state.myOrder.prices[i]}</td><td>
+                                <button type="button" classNasme="btn btn-warning" onClick = {this.RemoveItem.bind(this , i)}>-</button></td></tr>
+                        )
+                    }.bind(this))
+                    }
+                    <tr>
+                    <td></td><td></td><td><b>Total: ${this.state.myOrder.total}</b></td></tr>
+
+                    </tbody> </table>
                         <div className="row">
                             <button type="button" id = "placeOrder" onClick = {clickHandler} className="btn btn-warning">Place Order</button>
                         </div>

@@ -127,3 +127,7 @@ table{
 tr:hover{
     background-color: bisque;
 }
+
+#myOrderTbl{
+    width:50%;
+}
