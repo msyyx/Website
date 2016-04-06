@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/profile.css" rel="stylesheet">
+
+
+
+    <meta charset="UTF-8">
+    <title>New Comment</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="row" id="header"></div>
+<div id="wrapper">
+
+    <div class="container">
+        <h1>Create New Comment</h1>
+        <hr>
+        <form id="hostInput">
+
+            <div class="form-group">
+                <label for="description">Comment</label>
+                <textarea class="form-control" rows="10" cols="100" id="comment" placeholder="Comment here please" required></textarea>
+            </div>
+            <hr>
+            <button type="submit" id = 'submit'>Submit</button>
+
+        </form>
+        <br><br>
+    </div>
+</div>
+<!-- Footer -->
+<footer>
+    <div class="row" id="footer"></div>
+</footer>
+</body>
+
+
+
+<!-- jQuery -->
+<script src="js/jquery-2.2.1.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  var cookie =  document.cookie.split(';')
+  var token;
+  var username;
+  var loggedIn = false;
+  for (var i = 0;i<cookie.length; i++) {
+    if (cookie[i].split('=')[0] == "token"){
+        token = cookie[i].split('=')[1];
+
+    }
+  }
+  $.post( "/profile/load",
+              {'token' :token
+
+              }
+      )
+      .done(function(data) {
+
+        $.get("/profile/"+data._id +"/info").done(function(d){
+          username = d.username;
+          console.log(d.username);
+          loggedIn = true;
+        })
+      })
+      .error(function(err){
+        alert("Please log in");
+        loggedIn = false;
+      })
+
+
+  $("#submit").on('click', function(event) {
+    var hostname = document.URL;
+    hostname = hostname.split('/');
+    hostname = hostname[hostname.length-1];
+    //hostname = hostname.substring(0,hostname.length-1);
+    comment = $("#comment").val();
+    console.log(hostname);
+    console.log(comment);
+    $.post(
+       "http://localhost:3000/order/update",
+      {
+        'hostname' : hostname,
+        'comment' : comment,
+        'username' : username
+      }).done(function(res) {
+        window.location.href='/order.html';
+
+      })
+
+
+alert('Thanks');
+  });
+
+})
+
+</script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/java" src="js/Header.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</html>
