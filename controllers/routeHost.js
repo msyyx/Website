@@ -19,6 +19,18 @@ router.get('/', function(req, res, next) {
       res.json(hosts);
       });
 });
+/*search by name(:id)*/
+router.get('/search/:id', function(req, res, next) {
+    var regex = new RegExp(req.params.id, 'i');
+    console.log("idk");
+    Host.find({ name : regex} , function(err,q){
+            res.send(q);
+        }
+    );
+
+});
+
+
 
 /* add a host */
 router.post('/add', function(req, res, next) {

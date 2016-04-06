@@ -2,87 +2,31 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<link rel='stylesheet' type='text.css' href='css/search.css'>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-
+<link rel='stylesheet' type='text.css' href='/css/search.css'>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://fb.me/react-0.14.5.js"></script>
+	<script src="https://fb.me/react-dom-0.14.5.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 
 <body>
-<div id='font'>
 
-<div id='header'>
+<div id='header1'>
 	<div id='search'>
 	<form autocomplete='on'>
 		<input type='text' name='food' placeholder='Find food'>
-		<input type='text' name='location' placeholder='Location'>
 		<input type='submit' value='Feed Me!'>
 	</form>
 	</div>
 </div>
 
-<div>
-<ul><div class="row" id="result_info">
-	<li class='li1' style='font-size:30px'>Lasagna</li>
-	<li class='li2' style='font-size:15px'>Showing 1-10 of 89</li>
+<div class="container">
+	<div class="row" id='table'>
 	</div>
-</ul>
 </div>
-
-<div class="row" id='table'>
-<table>
-	<tr>
-		<td width='95'><img src='Images/7Numbers.jpg'></td>
-		<td>7 Numbers Restaurant<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>516 Eglinton Avenue W<br>Toronto, ON M5N 1A5<br>(416) 322-5183</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/TrattoriaTaverniti.jpg'></td>
-		<td>Trattoria Taverniti<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>591 College Street<br>Toronto, ON M6G 1B2<br>(416) 537-0078</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/7NumbersDanworth.jpg'></td>
-		<td>7 Numbers Dansworth<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>307 Danforth Avenue E<br>Toronto, ON M4K 1N7<br>(416) 469-5183</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/Gusto101.jpg'></td>
-		<td>Gusto 101<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>101 Portland Street<br>Toronto, ON M5V 2N3<br>(416) 504-9669</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/IIMulino.jpg'></td>
-		<td>II Mulino<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>1060 Eglinton Avenue W<br>Toronto, ON M6C 2C5<br>(416) 780-1173</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/ReginaPizzeria.jpg'></td>
-		<td>Regina Pizzeria and Trattoria<br>$$ <a href=#Italianfood>Italian</a> <a href=#Pizza>Pizza</a></td>
-		<td>782 College Street<br>Toronto, ON M6G 1C6<br>(416) 535-2273</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/7West.jpg'></td>
-		<td>7 West Cafe<br>$$ <a href=#Italianfood>Italian</a> <a href=#Breakfast>Breakfast and Brunch</a> <a href=#Bars>Bars</a></td>
-		<td>7 Charles Street W<br>Toronto, ON M4Y 1R4<br>(416) 928-9041</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/Fusaro.jpg'></td>
-		<td>Fusaro's Kitchen<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>147 Spadina Avenue<br>Toronto, ON M5V 2L7<br>(416) 260-8414</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/VesuvioPizzeria.jpg'></td>
-		<td>Vesuvio Pizzeria and Spaghetti House<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>3010 Dundas Street W<br>Toronto, ON M6P 1Z3<br>(416) 763-4191</td>
-	</tr>
-	<tr>
-		<td width='95'><img src='Images/Tommaso.jpg'></td>
-		<td>Tommaso's Trattoria<br>$$ <a href=#Italianfood>Italian</a></td>
-		<td>400 Eastern Avenue<br>Toronto, ON M4M 1B9<br>(416) 466-0988</td>
-	</tr>
-</table>
-</div>
-</div>
+<footer><div class="row"  id="footer"></div></footer>
 </body>
-
+<script src="/js/jquery-2.2.1.min.js"></script>
+<script type="text/babel" src="/js/search.js"></script>
+<script type="text/babel" src="/js/Header.js"></script>
 </html>

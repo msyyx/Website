@@ -6,46 +6,7 @@ h1{
 	text-align: left;
 }
 
-ul{
-    width:65%;
-    list-style-type: none;
-    margin-left: 0;
-    margin-top: 30px;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: yellow;
-}
-
-.li1{
-	float: left;
-}
-
-.li1 a{
-	display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;	
-}
-
-.li2{
-	float: right;
-}
-
-.li2 a{
-	display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#result_info{
-	background-color: white;
-}
-
-#header{
+#header1{
 	background-color: #ffa366;
 	width: 100%;
 	margin: 0;
@@ -53,9 +14,6 @@ ul{
 	padding: 10px;
 }
 
-#font{
-	font-family: Arial;
-}
 
 #search{
 	margin-left: 25%;
@@ -76,11 +34,8 @@ input[type=submit]{
 }
 
 table{
-	width: 66%;
-	margin-top: 6%;
-	margin-left: 17.4%;
-	margin-right: auto;
-	margin-bottom: 5%;
+	width: 80%;
+	position:center;
 	border-collapse: collapse;
 }
 
@@ -102,7 +57,6 @@ footer {
 
 #bottom-footer{
 	text-align: center;
-	margin-bottom: 20px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -113,9 +67,6 @@ footer {
 	padding: 0px 20px;
 	border-right: 1px solid #ccc;
 	font-family: 'OpenSansRegular', Arial, sans-serif;
-	font-size: 13px;
-	color: #626262;
-	padding: 0 12px;
 	text-shadow: 1px 1px 0 rgba(200,200,200,1);
 }
 

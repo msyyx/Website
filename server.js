@@ -33,7 +33,9 @@ app.use('/host',hostRoute);
 app.use('/order', orderRoute);
 app.use('/user',userRoute);
 app.use('/profile',profileRoute);
+app.use('/search',function(req, res){res.sendFile('search.html', {root: "./view/"});});
 app.use('/', function(req, res){res.sendFile('main.html', {root: "./view/"});});
+
 
 
 // catch 404 and forward to error handler
