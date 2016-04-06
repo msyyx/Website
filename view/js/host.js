@@ -335,7 +335,6 @@ var Order = React.createClass({
         return(
             <div>
                 <div role="tabpanel" className="tab-pane" id="order">
-
                     <table>
                         <tbody>
                         <tr>
