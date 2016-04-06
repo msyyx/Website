@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Profile Page</title> 
+  <title>Profile Page</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/profile.css" rel="stylesheet">
 
@@ -13,20 +13,20 @@
   <script src="js/jquery-2.2.1.min.js"></script>
   <div class="row" id="header"></div>
     <meta charset="UTF-8">
-    
+
     <script>
     var cookie =  document.cookie.split(';')
     var token;
     for (var i = 0;i<cookie.length; i++) {
       if (cookie[i].split('=')[0] == "token"){
           token = cookie[i].split('=')[1];
-          
+
       }
     };
 
     $.post( "/profile/load",
                 {'token' :token
-                
+
                 }
         )
         .done(function(data) {
@@ -34,12 +34,12 @@
           $.get("/profile/"+data._id +"/info").done(function(d){
 
             console.log(d);
-            
+
             $("#Name").text(d.name);
             $("#Username").text("Username :  "+d.username);
             $("#Email").text("Email :  " + d.email);
             $("#Birthdate").text("Birthdate :  "+d.dateofbirth);
-            $("#recently").text(d.recentlyvisit);
+            //$("#recently").text(d.recentlyvisit);
         });
 
         })
@@ -61,13 +61,21 @@
   <img style="display:inline;" src="img/profile.jpg">
   <h2 id ="Name" style="display:inline" class="gold"> </h2>
   <ul>
-  
+
   <li id="Username" class="orange"></li>
   <li id="Birthdate" class="blue"></li>
   <li id="Email" class="green"></li>
-  <li class="purple"> Recently visited:
+  <br><br>
 
-  <p id ="recently visit">zzzz </p>
+  <button id ="Oh" style="    background-color: #ff9933;
+    border: none;
+    color: white;
+    margin-right: 80px;
+    padding: 25px 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;"><a href="/order">View Order History</a> </button>
   </li>
   </ul>
   <button type="button" class="btn" id ="edit" onclick="change()"  >Edit your profile</button>
@@ -77,7 +85,7 @@
   <div id="editprofile" >
 
     <img src="img/profile.jpg">
-    <h2> Edit your profile now</h2> 
+    <h2> Edit your profile now</h2>
     <hr>
         <form id="profileInput">
             <div >
@@ -100,7 +108,7 @@
         </form>
   </div>
 
-  
+
 
   <footer>
     <div class="row" id="footer"></div>
@@ -124,15 +132,15 @@ function change(){
         var token = document.cookie.split('=')[1];
         $.post( "/profile/load",
                 {'token' :token
-                
+
                 }
         )
         .done(function( data ) {
-          
+
           $.ajax( {
                   url:"/profile/update",
                   type:"PUT",
-                  data:{    
+                  data:{
                      "_id" : data._id,
                      "name" : $( "#name" ).val(),
                      "email":$( "#email" ).val(),
@@ -153,8 +161,8 @@ function change(){
           });
           **/
        });
-        
-    
+
+
 
     })
 

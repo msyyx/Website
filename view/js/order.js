@@ -63,7 +63,8 @@ var DisplayOrder = React.createClass( {
       table.push(row);
     }
     var tableStyle = {
-      border: '1px solid black'
+      border: '1px solid black',
+      margin:  '20px'
     };
     return (
       //<p> {JSON.stringify(this.props.order)}</p>
