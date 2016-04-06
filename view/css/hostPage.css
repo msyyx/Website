@@ -116,3 +116,14 @@ footer {
     margin-right: 10px;
     font-size:16px;
 }
+
+
+table{
+    position: center;
+    width:80%;
+    margin:10px;
+}
+
+tr:hover{
+    background-color: bisque;
+}

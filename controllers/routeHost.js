@@ -72,6 +72,7 @@ router.get('/:id/info', function(req, res, next) {
     console.log("looking for info");
     Host.findById(req.params.id, function (err, host) {
         if (err) return next(err);
+        console.log(host.items.length);
         res.json(host);
     });
 });

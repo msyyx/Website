@@ -61,13 +61,8 @@ var Footer = React.createClass({
             <div id="bottom-footer">
                 <div className="row">
                     <div className="col-md-12">
-                        <a href="#">Home</a>
-                        <a href="#">Link2</a>
-                        <a href="#">Link3</a>
-                        <a href="#">Link4</a>
-                        <a href="#">Link5</a>
-                        <a href="#">Link6</a>
-                        <a href="#">Link7</a>
+                        <a href="http://web.cs.toronto.edu/">Computer Science @ University of Toronto</a>
+
                     </div>
                 </div>
                 <p></p>

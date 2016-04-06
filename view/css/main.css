@@ -1,4 +1,6 @@
 
+
+
 *{margin: 0px; padding: 0px;}
 
 body{
@@ -34,7 +36,7 @@ footer {
     padding: 15px 0;
     width: 100%;
     background-color: #ffa366;
-    position: relative;
+    position: fixed;
     bottom: 0;
 }
 

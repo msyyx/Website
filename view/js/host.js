@@ -41,7 +41,10 @@ var HostInfo = React.createClass({
     },
     getInitialState: function() {
 
-        return {data: []};
+        return {data: {
+            items:[],
+            prices:[]
+        }};
     },
     componentDidMount: function() {
         this.loadInfoFromServer();
@@ -51,7 +54,7 @@ var HostInfo = React.createClass({
         <div>
             <Introduction data={this.state.data}/>
             <br/>
-            <DetailedInfo/>
+            <DetailedInfo data={this.state.data}/>
         </div>
         )
     },
@@ -106,11 +109,12 @@ var DetailedInfo = React.createClass({
                 <div className="row">
                     <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
                         <Tab eventKey={1} title="Reviews"><br/><Reviews/></Tab>
-                        <Tab eventKey={2} title="Order" ><Order/></Tab>
+                        <Tab eventKey={2} title="Order" ><Order data={this.props.data}/></Tab>
                         <Tab eventKey={3} title="Info"><Extra/></Tab>
                     </Tabs>
                 </div>
                 <br/>
+
             </div>
 
         );
@@ -237,28 +241,27 @@ var Order = React.createClass({
 
     render: function(){
       var clickHandler = this.HandleClick;
+
         return(
             <div>
                 <div role="tabpanel" className="tab-pane" id="order">
-                    <ul className="item-list">
-                        <li><div className="row">
-                            Hamburger XII ver.<button type="button" className="btn btn-warning">+</button>
-                        </div>
-                        </li>
-                        <li><div className="row bg">
-                            Hamburger X ver.<button type="button" className="btn btn-warning">+</button>
-                        </div>
-                        </li>
-                        <li><div className="row">
-                            66666666.<button type="button" className="btn btn-warning">+</button>
-                        </div>
-                        </li>
 
-                        <li><div className="row bg">
-                            233333333333<button type="button"  className="btn btn-warning">+</button>
-                        </div>
-                        </li>
-                    </ul>
+                    <table>
+                        <tr>
+                            <td><b>Item</b></td>
+                            <td><b>Price</b></td>
+                            <td> </td>
+                        </tr>
+
+                        {this.props.data.items.map(function(item, i){
+                            return(
+                                <tr><td>{i+1}.{item}</td><td>{this.props.data.prices[i]}</td><td><button type="button" className="btn btn-warning">+</button></td></tr>
+                            )
+                        }.bind(this))
+                        }
+
+
+                    </table>
 
                     <hr/>
                         <div className="row">
