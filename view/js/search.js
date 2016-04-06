@@ -27,11 +27,12 @@ var SearchResult = React.createClass({
     render:function(){
         return(
             <div>
-                <h4>Searching: {this.state.data.keyword}</h4>
+                <h4>Searching: {searchCtx}</h4>
                 <p>{this.state.data.list.length} results were found.</p>
                 <hr/>
             <table>
                 <tbody>
+                <td> <b>Name</b></td><td><b>Contact</b></td>
                 {this.state.data.list.map(function(result, i){
                     return(
                     <tr key={i}>
@@ -40,7 +41,7 @@ var SearchResult = React.createClass({
                     )
                  })
                 }
-                }
+
                 </tbody>
             </table>
         </div>
@@ -49,3 +50,12 @@ var SearchResult = React.createClass({
 });
 
 ReactDOM.render(<SearchResult/>, document.getElementById('table'));
+
+
+    $( "#search-form" ).submit(function(e){
+    e.preventDefault();
+    var toSearch = $("#food").val();
+    console.log(toSearch);
+    window.location.href = "/search/"+toSearch;
+});
+
