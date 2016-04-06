@@ -4,6 +4,9 @@ var Tab = ReactBootstrap.Tab;
 var map;
 var toronto = {lat: 43.700 , lng: -79.410};
 
+var noViews;
+var average = 0;
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 11,
@@ -45,6 +48,7 @@ $.post( "/profile/load",
       loggedIn = false;
     })
 
+var hostID;
 
 
 function mapResize(){
@@ -104,14 +108,10 @@ var Introduction = React.createClass({
 
                 </div>
                 <div className="ratings">
-                    <p className="pull-right">3 reviews</p>
+                    <p className="pull-right" id = "nov"> {noViews} reviews</p>
                     <p>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star-empty"></span>
-                        4.0 stars
+                        
+                        {average} stars
                     </p>
                 </div>
 
@@ -139,7 +139,8 @@ var DetailedInfo = React.createClass({
 
                 <div className="row">
                     <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
-                        <Tab eventKey={1} title="Reviews"><br/><Reviews data={this.props.data}/></Tab>
+                        <Tab eventKey={1} title="Reviews"><br/><Temp/></Tab>
+
                         <Tab eventKey={2} title="Order" ><Order data={this.props.data}/></Tab>
                         <Tab eventKey={3} title="Info"><Extra data={this.props.data}/></Tab>
                     </Tabs>
@@ -151,59 +152,65 @@ var DetailedInfo = React.createClass({
 
 });
 
+var Temp = React.createClass({
+  getInitialState: function(){
+    return{
+      file : ''
+    }
+  },
 
+  componentDidMount: function() {
+    var hostID = document.URL;
+    hostID = hostID.split('/');
+    hostID = hostID[hostID.length-1];
+    this.serverRequest = $.get('/order/showhost/' + hostID,
+      function(res) {
+        var response = res;
+      console.log("response is " + response);
+      this.setState({
+        file : res
+      });
+    }.bind(this));
+  },
+
+  render: function() {
+    console.log(this.state.file);
+    return <Reviews file = {this.state.file}/>
+  }
+})
 var Reviews = React.createClass({
     render: function(){
+      var data = this.props.file;
+      var llist = [];
+      noViews = data.length;
+      for (var i = 0; i < data.length; i++) {
+        var list = [];
+        average = (average + data[i].rate) / (i + 1);
+        list.push(data[i].date);
+        list.push(data[i].comment);
+        list.push(data[i].rate);
+        llist.push(list);
+      }
         return (
         <div>
-            <div role="tabpanel" className="tab-pane active" id="reviews">
-                <div className="row">
-                    <div className="col-md-12">
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star"></span>
-                        <span className="glyphicon glyphicon-star-empty"></span>
-                        Anonymous
-                        <span className="pull-right">- days ago</span>
-                        <p></p>
-                        <p>Small coffee shop but has the most delicious coffee!! Had the Brazil in the form of a latte and was blown away by how smooth it was!!! The place is tiny with no more than 10 seats with limited table space, so it's definitely more of a pick up and go type of place. If you're lucky to find a free spot, the decor is simple and quite bright. However, there are so many people coming in and out so it might be hard to have a conversation. They also have water at the side for sit in guests to enjoy, which I thought was a nice bonus.</p>
-                    </div>
+        {
+          llist.map(function(ist, i) {
+
+            return (
+              <div role="tabpanel" className="tab-pane active" id="reviews">
+                  <div className="row">
+                      <div className="col-md-12">
+                          <p> Rating {ist[2]} </p>
+                          Anonymous
+                          <span className="pull-right">- {ist[0]}</span>
+                          <p></p>
+                          <p> {ist[1]} </p>
+                      </div>
+                  </div>
                 </div>
-
-                <hr/>
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span className="pull-right">- days ago</span>
-                            <p></p>
-                            <p>Will come again!</p>
-                            <p>One of the best coffee shops in Toronto. Single-origin beans, rich with flavor are used for their crafted drinks and pour-overs.!</p>
-                        </div>
-                    </div>
-
-                    <hr/>
-
-                        <div className="row">
-                            <div className="col-md-12">
-                                <span className="glyphicon glyphicon-star"></span>
-                                <span className="glyphicon glyphicon-star"></span>
-                                <span className="glyphicon glyphicon-star"></span>
-                                <span className="glyphicon glyphicon-star"></span>
-                                <span className="glyphicon glyphicon-star-empty"></span>
-                                Anonymous
-                                <span className="pull-right">- days ago</span>
-                                <p></p>
-                                <p>Love this! blah blah blah blah</p>
-                            </div>
-                        </div>
-            </div>
+            )
+          })
+        }
         </div>
         )
     }
@@ -288,19 +295,24 @@ var Order = React.createClass({
     var hostID = document.URL;
     hostID = hostID.split('/');
     hostID = hostID[hostID.length - 1];
+    $.get(('/host/' + hostID + '/info'), function(res, err) {
+      console.log(res);
+      var hostName = res.name;
+      $.post("/order/add", {
+        "id": hostID,
+        "date" : dateStr,
+        "orderDetail" : JSON.stringify(orderDetail),
+        "username" : username,
+        "hostName" : hostName
+      })
+      .success(function(res) {
+        alert("OrderPlaced");
+      })
+      .error(function(res) {
+        alert("db error");
+      });
+    })
 
-    $.post("/order/add", {
-      "id": hostID,
-      "date" : dateStr,
-      "orderDetail" : JSON.stringify(orderDetail),
-      "username" : username
-    })
-    .success(function(res) {
-      alert("OrderPlaced");
-    })
-    .error(function(res) {
-      alert("db error");
-    });
   }},
     AddItem: function(index){
         this.state.myOrder.indexes.push(index);
@@ -391,4 +403,5 @@ var Order = React.createClass({
 });*/
 
 ReactDOM.render(<HostInfo/>, document.getElementById('HostInfo'));
+//ReactDOM.render(<Temp/>,document.getElementById('review'));
 google.maps.event.addDomListener(window, 'load', initMap);

@@ -44,3 +44,13 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+exports.listen = function(port) {
+  console.log("Listening on port" + port);
+  app.listen(port);
+}
+
+exports.close = function() {
+  console.log("server closed");
+  app.close();
+}

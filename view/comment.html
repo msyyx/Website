@@ -24,8 +24,11 @@
         <form id="hostInput">
 
             <div class="form-group">
-                <label for="description">Comment</label>
+                <label for="1">Comment</label>
                 <textarea class="form-control" rows="10" cols="100" id="comment" placeholder="Comment here please" required></textarea>
+<br><br>
+                <label for="1">Rating</label>
+                <input type="number" id="rate" placeholder="5" required></input>
             </div>
             <hr>
             <button type="submit" id = 'submit'>Submit</button>
@@ -78,23 +81,32 @@ $(document).ready(function() {
 
 
   $("#submit").on('click', function(event) {
-    var hostname = document.URL;
-    hostname = hostname.split('/');
-    hostname = hostname[hostname.length-1];
+    var hostID = document.URL;
+    hostID = hostID.split('/');
+    hostID = hostID[hostID.length-1];
     //hostname = hostname.substring(0,hostname.length-1);
-    comment = $("#comment").val();
-    console.log(hostname);
+    var comment = $("#comment").val();
+    var rate = $("#rate").val();
+    /*if (parseInt(rate) > 5 || parseInt(rate) < 0) {
+      alert(please input a number between 0 and 5);
+    }
+    else {*/
+
+
+    console.log(hostID);
     console.log(comment);
     $.post(
        "http://localhost:3000/order/update",
       {
-        'hostname' : hostname,
+        'hostID' : hostID,
         'comment' : comment,
-        'username' : username
+        'username' : username,
+        'rate' : rate
       }).done(function(res) {
         window.location.href='/order.html';
 
       })
+
 
 
 alert('Thanks');
