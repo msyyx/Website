@@ -15,7 +15,14 @@
     <meta charset="UTF-8">
     
     <script>
-    var token =  document.cookie.split('=')[1];
+    var cookie =  document.cookie.split(';')
+    var token;
+    for (var i = 0;i<cookie.length; i++) {
+      if (cookie[i].split('=')[0] == "token"){
+          token = cookie[i].split('=')[1];
+          
+      }
+    };
 
     $.post( "/profile/load",
                 {'token' :token
@@ -24,7 +31,7 @@
         )
         .done(function(data) {
 
-          $.get("/profile/"+data._id).done(function(d){
+          $.get("/profile/"+data._id +"/info").done(function(d){
 
             console.log(d);
             
@@ -49,7 +56,7 @@
 <body>
   <div  class = "profile" id ="profile">
 
-  <h1 style="padding-top: 10%;">Profile Information</h1>
+  <h1 style="padding-top: 5%;">Profile Information</h1>
   <hr>
   <img style="display:inline;" src="img/profile.jpg">
   <h2 id ="Name" style="display:inline" class="gold"> </h2>

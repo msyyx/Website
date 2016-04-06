@@ -78,8 +78,13 @@ router.post('/load', function(req,res,next){
     });
 });
 **/
+router.get('/:id', function(req, res, next) {
+     res.sendFile('display.html', {root: "view/"});
+});
 
-router.get('/:id',function(req,res,next){
+
+
+router.get('/:id/info',function(req,res,next){
     User.findById(req.params.id, function(err, user){
     if (err) return next(err);
  
