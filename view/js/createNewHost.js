@@ -8,11 +8,12 @@ $( "#hostInput" ).submit(function(e){
         alert("User not login! Redirecting...");
         window.location.href = "/login.html";
     }
-    console.log( document.cookie.split('=')[1]);
+
 
     var items = [];
     var prices= [];
     var hours = [];
+
     for(var i = 0; i < counter ; i++){
         items[i] = $( "#itemName" + (i + 1) ).val();
         prices[i] = $( "#price" + (i + 1) ).val();

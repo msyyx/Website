@@ -77,6 +77,7 @@ router.get('/:id/info', function(req, res, next) {
         res.json(host);
     });
 });
+
  /***** Not yet implement
  //update host information
  router.put('/:id', function(req, res, next) {

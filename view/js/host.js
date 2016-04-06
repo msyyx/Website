@@ -204,7 +204,6 @@ var Extra = React.createClass({
         </div>
         )
     }
-
 });
 
 var Order = React.createClass({
