@@ -26,6 +26,7 @@ router.post("/add", function(req,res, next) {
     orderDetail: req.body.orderDetail,
     userName: req.body.username,
     hostName: req.body.hostName,
+    hostOwner: req.body.hostOwner,
     comment: ''
   }).save(function(err, host, count) {
     if(err){
@@ -63,6 +64,7 @@ router.post('/update', function(req,res) {
   })
 });
 
+//show histories of a given host
 router.get('/showhost/:hostID', function(req,res) {
   var hostID = req.params.hostID;
   console.log("looking for host");
@@ -94,6 +96,31 @@ router.post('/show', function (req,res) {
               History.find({'userName' : decoded._doc.username}, function(err, data) {
                 res.json(data);
                 console.log(1111);
+              })
+
+          }
+      });
+    }
+});
+
+router.post('/myorder', function(req,res) {
+  var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+      // verifies secret and checks exp
+      jwt.verify(token, 'SecretKey', function(err, decoded) {
+          if (err) {
+            console.log(1234);
+              return res.json({ success: false, message: 'Failed to authenticate token.' });
+          } else {
+              // if everything is good, save to request for use in other routes
+              req.decoded = decoded;
+              console.log(decoded._doc.username);
+              History.find({'hostOwner' : decoded._doc.username}, function(err, data) {
+                res.json(data);
+                console.log(1121);
               })
 
           }

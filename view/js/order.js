@@ -12,16 +12,23 @@ var FetchOrder = React.createClass( {
   },
 
   componentDidMount: function() {
-    var cookie =  document.cookie.split(';')
-    var token;
+    console.log(this.props.url);
     var username;
     var loggedIn = false;
-    for (var i = 0;i<cookie.length; i++) {
-      if (cookie[i].split('=')[0] == "token"){
-          token = cookie[i].split('=')[1];
 
+
+    var token = null;
+    var cookie = document.cookie.split(';');
+
+  if(cookie!= undefined){
+      for (var i = 0;i<cookie.length; i++) {
+          var name = cookie[i].split('=')[0].replace(' ' ,'');
+          if (name == "token"){
+              token = cookie[i].split('=')[1];
+
+          }
       }
-    }
+  }
     this.serverRequest = $.post(this.props.url,
       {
       'token' : token
@@ -54,6 +61,8 @@ var DisplayOrder = React.createClass( {
       row.push(order[i].userName);
       row.push(order[i].date);
       row.push(order[i].hostName);
+      row.push(order[i].orderDetail);
+      row.push(order[i].hostOwner);
       if(order[i].comment == ''){
         row.push(<p><a href = {"/order/comment/" + order[i].hostID}> Write a comment </a></p>);
       }
@@ -69,24 +78,27 @@ var DisplayOrder = React.createClass( {
     return (
       //<p> {JSON.stringify(this.props.order)}</p>
 
-      <table style={tableStyle}>
+      <table className = 'table' >
 
-      <thead>
-        <td style={tableStyle}> Name </td>
-        <td style={tableStyle}> Date </td>
-        <td style={tableStyle}> HostName </td>
-        <td style={tableStyle}> Comment </td>
+      <thead className = 'thead'>
+        <td > Name </td>
+        <td > Date </td>
+        <td > HostName </td>
+        <td> Detail </td>
+        <td> hostOwner </td>
+        <td > Comment </td>
+
 
       </thead>
-      <tbody>
+      <tbody className = 'tbody'>
       {
         table.map(function(row, i) {
           return (
-            <tr style={tableStyle} key = {i}>
+            <tr  key = {i}>
             {
               row.map(function(cell,j) {
                 return (
-                  <td style={tableStyle} key = {j}> {cell} </td>
+                  <td  key = {j}> {cell} </td>
                 );
               })
             }
@@ -106,3 +118,4 @@ var DisplayOrder = React.createClass( {
   //if(loggedIn) {
   //  window.clearInterval(timer);
   ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/show" />,document.getElementById("new-div"));
+  ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/myorder" />,document.getElementById("new-div2"));

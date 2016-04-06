@@ -19,7 +19,7 @@ function initMap() {
         title: 'location!'
     });
 }
-/*
+
 var cookie =  document.cookie.split(';')
 var token;
 var username;
@@ -48,7 +48,7 @@ $.post( "/profile/load",
       alert("Please log in");
       loggedIn = false;
     })
-    */
+
 
 var hostID;
 
@@ -112,7 +112,7 @@ var Introduction = React.createClass({
                 <div className="ratings">
                     <p className="pull-right" id = "nov"> {noViews} reviews</p>
                     <p>
-                        
+
                         {average} stars
                     </p>
                 </div>
@@ -255,30 +255,7 @@ var Order = React.createClass({
     },
 
   HandleClick: function(event) {
-    var cookie =  document.cookie.split(';')
-    var token;
-    var username;
-    for (var i = 0;i<cookie.length; i++) {
-      if (cookie[i].split('=')[0] == "token"){
-          token = cookie[i].split('=')[1];
 
-      }
-    }
-    $.post( "/profile/load",
-                {'token' :token
-
-                }
-        )
-        .done(function(data) {
-
-          $.get("/profile/"+data._id +"/info").done(function(d){
-            username = d.username;
-            console.log(d.username);
-          })
-        })
-        .error(function(err){
-          alert("Please log in");
-        })
     if(!loggedIn){
           alert("please log in first");
         window.location.href='/login.html';
@@ -297,15 +274,19 @@ var Order = React.createClass({
     var hostID = document.URL;
     hostID = hostID.split('/');
     hostID = hostID[hostID.length - 1];
+    var order = this.state.myOrder.items;
     $.get(('/host/' + hostID + '/info'), function(res, err) {
       console.log(res);
       var hostName = res.name;
+      var hostOwner = res.ownerName;
       $.post("/order/add", {
         "id": hostID,
         "date" : dateStr,
-        "orderDetail" : JSON.stringify(orderDetail),
+        "orderDetail" : JSON.stringify(order),
         "username" : username,
-        "hostName" : hostName
+        "hostName" : hostName,
+        "hostOwner" : hostOwner
+
       })
       .success(function(res) {
         alert("OrderPlaced");

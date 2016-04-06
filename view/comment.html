@@ -55,11 +55,13 @@ $(document).ready(function() {
   var token;
   var username;
   var loggedIn = false;
-  for (var i = 0;i<cookie.length; i++) {
-    if (cookie[i].split('=')[0] == "token"){
-        token = cookie[i].split('=')[1];
 
-    }
+  for (var i = 0;i<cookie.length; i++) {
+      var name = cookie[i].split('=')[0].replace(' ' ,'');
+      if (name == "token"){
+          token = cookie[i].split('=')[1];
+
+      }
   }
   $.post( "/profile/load",
               {'token' :token
