@@ -4,7 +4,9 @@ var limit = 50;
 $( "#hostInput" ).submit(function(e){
     e.preventDefault();
     var token = null;
+    var cookie = document.cookie.split(';');
 
+if(cookie!= undefined){
     for (var i = 0;i<cookie.length; i++) {
         var name = cookie[i].split('=')[0].replace(' ' ,'');
         if (name == "token"){
@@ -12,6 +14,9 @@ $( "#hostInput" ).submit(function(e){
 
         }
     }
+}
+    console.log("data" + token);
+
     if(token == null){
         alert("User not login! Redirecting...");
         window.location.href = "/login.html";
@@ -40,25 +45,25 @@ $( "#hostInput" ).submit(function(e){
             "name" : $( "#name" ).val(),
             "contact": $( "#contact" ).val(),
             "description":$( "#description" ).val(),
-            "token": document.cookie.split('=')[1],
+            "token": token,
             "items" : JSON.stringify(items),
             "prices" : JSON.stringify(prices),
             "hours" : JSON.stringify(hours),
         }
         )
         .done(function(data) {
+            console.log(data);
             if(data.success === undefined){
                 window.location.href = data;
             }
             else{
                 alert("Please login!");
-                window.location.href = "/login.html";
+                //window.location.href = "/login.html";
             }
             return;
         }).error();
 
 })
-
 
 
 function addInput(divName){
