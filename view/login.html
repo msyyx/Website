@@ -25,7 +25,7 @@
 	</p>
 	<p>
 	<input type='submit' value='Login'>
-	<div class='g-signin2' data-onsuccess='onSignIn'></div>
+	<div class='g-signin2' data-onsuccess='saveData' onClick='onSignIn()'></div>
 	</p>
 	<p>
 	Not registered?
@@ -42,8 +42,12 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script>
-	function onSignIn(googleUser){
-		var profile=googleUser.getBasicProfile();
+	var googleData;
+	function saveData(googleUser){
+		googleData = googleUser;
+	}
+	function onSignIn(){
+		var profile=googleData.getBasicProfile();
 
         $.post( "/user/findGoogle",
                 {
@@ -54,13 +58,16 @@
         )
         .done(function( data ) {
         	window.location.href='/profile.html';
-        	document.cookie="token=" + data + ";";
+        	document.cookie ="token=" + data + ";";
         })
 	}
 
+/*
+	$( ".abcRioButtonContentWrapper" ).onClick(function(e){
+		console.log("hey");
+	}*/
     $( "#userInput" ).submit(function(e){
         e.preventDefault();
-        var values = $(this).serialize();
 
         $.post( "/user/find",
                 {

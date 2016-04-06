@@ -18,7 +18,8 @@
     var cookie =  document.cookie.split(';')
     var token;
     for (var i = 0;i<cookie.length; i++) {
-      if (cookie[i].split('=')[0] == "token"){
+        var name = cookie[i].split('=')[0].replace(' ','');
+      if (name == "token"){
           token = cookie[i].split('=')[1];
 
       }
@@ -45,7 +46,7 @@
         })
         .fail(function() {
           alert("Please log in first ");
-          window.position.href('login.hteml');
+          window.position.href('login.html');
         });
     </script>
 
