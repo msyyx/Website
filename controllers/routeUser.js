@@ -4,6 +4,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
+var crypto = require('crypto');
 
 /* GET /host all hosts. */
 router.get('/', function (req, res, next) {
@@ -27,6 +28,8 @@ router.get('/show', function (req, res, next) {
 
 /* add a host */
 router.post('/add', function (req, res, next) {
+    var key = crypto.pbkdf2Sync(req.body.password, 'salt', 10000, 512);
+    console.log(key.toString('hex'));
     User.find({'username':req.body.username}, function (err, users) {
         if (err) return next(err);
         console.log(req.body.username);
@@ -35,7 +38,7 @@ router.post('/add', function (req, res, next) {
                 //owner    : req.cookies.user_id,
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password
+                password: key
             }).save(function ( err, user, count ){
                 if( err ) return next( err );
                 res.end("Submission completed");
@@ -50,7 +53,8 @@ router.post('/add', function (req, res, next) {
 
 // GET /host/username, password
 router.post('/find', function (req, res, next) {
-    User.find({'username':req.body.username}, function (err, users) {
+    var key = crypto.pbkdf2Sync(req.body.password, 'salt', 10000, 512);
+    User.find({'username':req.body.username, 'password':key}, function (err, users) {
         if (err) return next(err);
         if (!(users[0] == null)){
             var token = jwt.sign(users[0], 'SecretKey', {
@@ -66,7 +70,7 @@ router.post('/find', function (req, res, next) {
 });
 
 router.post('/findGoogle', function (req, res, next) {
-    User.find({'username':req.body.username, 'password':req.body.password}, function (err, users) {
+    User.find({'username':req.body.username}, function (err, users) {
         if (err) return next(err);
         if (!(users[0] == null)){
             var token = jwt.sign(users[0], 'SecretKey', {
