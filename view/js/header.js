@@ -18,9 +18,6 @@ var LoginHeader = React.createClass({
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-left">
                             <li>
-                                <a href="/login.html">Login</a>
-                            </li>
-                            <li>
                                 <a href="/register.html">Register</a>
                             </li>
                             <li>
@@ -33,7 +30,9 @@ var LoginHeader = React.createClass({
                             <li>
                                 <a href="/search.html">Search</a>
                             </li>
-                            
+                            <li className="pull-right">
+                                <a href="/login.html">Login</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -63,7 +62,7 @@ var LogoutHeader = React.createClass({
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="/">PlatformName</a>
+                        <a className="navbar-brand" href="/">GoodEats</a>
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-left">
@@ -83,12 +82,10 @@ var LogoutHeader = React.createClass({
                             <li>
                                 <a href="/newhost.html">New host</a>
                             </li>
-
                              
-                            <li>
-                                <a onclick="this.logout"> Logout</a>
+                            <li className="pull-right">
+                                <a onClick= {this.logout}> Logout</a>
                             </li>
-
                             
                         </ul>   
                     </div>
@@ -104,12 +101,10 @@ var LogoutHeader = React.createClass({
 var Footer = React.createClass({
     render: function() {
         return (
-
             <div id="bottom-footer">
                 <div className="row">
                     <div className="col-md-12">
                         <a href="#">Computer Science @ University of Toronto</a>
-
                     </div>
                 </div>
                 <p></p>
@@ -120,16 +115,23 @@ var Footer = React.createClass({
 });
 
 
-
+var login = false;
 var cookie = document.cookie.split(";")
-console.log(cookie.length);
-if (cookie.length>0){
+
+for(var i = 0; i< cookie.length;i++){
+    var cookiesItem = cookie[i].split("=");
+    cookiesItem[0] = cookiesItem[0].replace(' ', '');
+    console.log(cookiesItem[0]);
+    if(cookiesItem[0] == "token"){
+        login = true;
+    }
+}
+if (login){
     ReactDOM.render(<LogoutHeader/>, document.getElementById('header'));
 }else{
     ReactDOM.render(<LoginHeader/>, document.getElementById('header'));
 }
 // Render our react components within the html DOM
-
 
 ReactDOM.render(<Footer/>, document.getElementById('footer'));
 
