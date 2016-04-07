@@ -50,7 +50,7 @@ var LoginHeader = React.createClass({
 var LogoutHeader = React.createClass({
     handleSearch:function(){
         var val = $("#searchVal").val();
-        location.href= "search/"+val;
+        location.href= "/search/"+val;
     },
     logout: function() {
         console.log("i am here");

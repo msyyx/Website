@@ -21,10 +21,8 @@ describe("test",function  () {
         });
 
         it("should not add the same username twice", function (done) {
-        superagent.post('http://localhost:3000/user/add').send(formData).end(function (err, res) {
-        assert.equal(res.statusCode, 400);
-        var expectedMsg = "Name already exists!";
-        assert.equal(res.text, expectedMsg);
+        superagent.post('http://localhost:3000/user/add').send(testuser).end(function (err, res) {
+        assert.equal(err, Error("Invalid Username"));
         done();
         });
     });
@@ -39,7 +37,7 @@ describe("test",function  () {
 
     it("should not login", function (done) {
       superagent.post('http://localhost:3000/user/find').send(login).end(function (err, res) {
-        assert.equal(res.statusCode, 400);
+        assert.equal(err, Error("Incorrect information"));
         done();
       });
     });
@@ -51,7 +49,7 @@ describe("test",function  () {
     };
   
     it("should be able to login ", function (done) {
-      superagent.post('http://localhost:3000/user/find').send(loginDataGood).end(function (err, res) {
+      superagent.post('http://localhost:3000/user/find').send(login1).end(function (err, res) {
         assert.equal(res.statusCode, 200);
         done();
       });
