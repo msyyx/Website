@@ -11,7 +11,7 @@ var profileRoute = require('./controllers/routeProfile.js');
 var app = express();
 var port = 3000;
 
-app.listen(port);
+var server = app.listen(port);
 
 mongoose.connect('mongodb://localhost/db', function(err) {
     if(err) {
@@ -52,5 +52,5 @@ exports.listen = function(port) {
 
 exports.close = function() {
   console.log("server closed");
-  app.close();
+  server.close();
 }

@@ -45,6 +45,7 @@ router.post('/add', function (req, res, next) {
                 //res.redirect( '/' );
             });
         }else{
+          res.status(400);
             return next(new Error("Invalid Username"));
         }
     });
@@ -61,9 +62,10 @@ router.post('/find', function (req, res, next) {
                 expiresIn: 1440*60 // expires in 24 hours
             });
             //console.log(token);
-            res.send(token);            
+            res.send(token);
             res.end("Information found");
         }else{
+          res.status(400);
             return next(new Error("Incorrect information"));
         }
     });
@@ -77,7 +79,7 @@ router.post('/findGoogle', function (req, res, next) {
                 expiresIn: 1440*60 // expires in 24 hours
             });
             console.log( "token is:"+ token);
-            res.send(token);            
+            res.send(token);
             res.end("Information found");
         }else{
             User.find({'username':req.body.username}, function (err, users) {

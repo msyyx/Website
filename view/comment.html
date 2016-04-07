@@ -86,16 +86,19 @@ $(document).ready(function() {
     if ($("#rate").val() < 1 || $("#rate").val() > 5) {
       console.log("notright");
       alert("Invalid input");
-      return;
       //alert(please input a number between 1 and 5);
       //return;
     }
+    else{
+
+
     var hostID = document.URL;
     hostID = hostID.split('/');
     hostID = hostID[hostID.length-1];
     //hostname = hostname.substring(0,hostname.length-1);
     var comment = $("#comment").val();
     var rate = $("#rate").val();
+
     /*if (parseInt(rate) > 5 || parseInt(rate) < 0) {
       alert(please input a number between 0 and 5);
     }
@@ -119,6 +122,7 @@ $(document).ready(function() {
 
 
 alert('Thanks');
+}
   });
 
 })

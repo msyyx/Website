@@ -12,6 +12,7 @@
  var historySchema = new Schema ({
    hostName: {type: String, default: ''},
    userName: {type: String, default: ''},
+   //userID: {type: String, default: ''},
    date: {type: String, default: ''},
    orderDetail: {type: String, default: ''},
    comment: {type: String, default: ''},
