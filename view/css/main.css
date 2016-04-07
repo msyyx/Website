@@ -34,7 +34,7 @@ footer {
     padding: 15px 0;
     width: 100%;
     background-color: #ffa366;
-    position: fixed;
+    position: absolute;
     bottom: 0;
 }
 

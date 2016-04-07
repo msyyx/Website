@@ -210,11 +210,11 @@ var Reviews = React.createClass({
               <div role="tabpanel" className="tab-pane active" id="reviews">
                   <div className="row">
                       <div className="col-md-12">
-                          <p> Rating {ist[2]} </p>
-                          {ist[3]}
+                          <p> <b>Rating</b> {ist[2]} </p>
+                          <b>Username:</b> {ist[3]}
                           <span className="pull-right">- {ist[0]}</span>
                           <p></p>
-                          <p> {ist[1]} </p>
+                          <p> <b>Comment</b>: {ist[1]} </p>
                       </div>
                   </div>
                   <br></br>

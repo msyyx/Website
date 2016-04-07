@@ -32,7 +32,7 @@ var SearchResult = React.createClass({
                 <hr/>
             <table>
                 <tbody>
-                <td> <b>Name</b></td><td><b>Contact</b></td>
+                <tr><td> <b>Name</b></td><td><b>Contact</b></td></tr>
                 {this.state.data.list.map(function(result, i){
                     return(
                     <tr key={i}>
