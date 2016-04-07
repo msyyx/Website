@@ -1,11 +1,13 @@
 var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
 
+/** setup for google map **/
 var map;
 var toronto = {lat: 43.700 , lng: -79.410};
 
 var noViews;
 var average = 0;
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -19,7 +21,7 @@ function initMap() {
         title: 'location!'
     });
 }
-
+/** checking cookies and login information **/
 var cookie =  document.cookie.split(';')
 var token;
 var username;
@@ -54,11 +56,11 @@ var hostID;
 
 
 function mapResize(){
-    console.log("?");
     google.maps.event.trigger(map, 'resize');
     map.setCenter(toronto);
 }
 
+/** class responsible for overall host page **/
 var HostInfo = React.createClass({
 
     loadInfoFromServer: function() {
@@ -97,7 +99,7 @@ var HostInfo = React.createClass({
     },
 });
 
-
+/** class responsible for detail introduction **/
 var Introduction = React.createClass({
     render: function() {
 
@@ -124,6 +126,7 @@ var Introduction = React.createClass({
 
 });
 
+/** class responsible for detail information tag **/
 var DetailedInfo = React.createClass({
     getInitialState() {
         return {
@@ -255,6 +258,8 @@ var Extra = React.createClass({
     }
 });
 
+
+/** class managing orders **/
 var Order = React.createClass({
     getInitialState: function() {
         return {myOrder: {
@@ -371,31 +376,6 @@ var Order = React.createClass({
 
 });
 
-/*$("#placeOrder").on('click', function(e) {
-  console.log("placeOrder clicked");
-  var str = document.URL;
-  str = str.split('/');
-  var id = str[str.length - 1];
-  console.log("id: " + id);
-
-  var date = new Date();
-  var dateStr = date.getFullYear() + '.' + date.getMonth() + '.' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
-
-  var orderDetail = {name: 2333, quantity: 6666};
-
-  $.post("/order/add", {
-    "id": document.URL,
-    "date" : dateStr,
-    "orderDetail" : JSON.stringify(orderDetail),
-    "username" : "hgkjfklds"
-  })
-  .success(function(res) {
-    alert("OrderPlaced");
-  })
-  .error(function(res) {
-    alert("db error");
-  });
-});*/
 
 ReactDOM.render(<HostInfo/>, document.getElementById('HostInfo'));
 //ReactDOM.render(<Temp/>,document.getElementById('review'));

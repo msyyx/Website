@@ -1,4 +1,5 @@
 
+/** header for not-login user **/
 var LoginHeader = React.createClass({
     handleSearch:function(){
       var val = $("#searchVal").val();
@@ -47,6 +48,7 @@ var LoginHeader = React.createClass({
     }
 });
 
+/** header for log-in user **/
 var LogoutHeader = React.createClass({
     handleSearch:function(){
         var val = $("#searchVal").val();
@@ -110,7 +112,7 @@ var LogoutHeader = React.createClass({
 });
 
 
-
+/** footer **/
 var Footer = React.createClass({
     render: function() {
         return (
@@ -128,6 +130,7 @@ var Footer = React.createClass({
 });
 
 
+/** cookie check to see whether log-in **/
 var login = false;
 var cookie = document.cookie.split(";")
 
@@ -139,12 +142,13 @@ for(var i = 0; i< cookie.length;i++){
         login = true;
     }
 }
+
+/** render component **/
 if (login){
     ReactDOM.render(<LogoutHeader/>, document.getElementById('header'));
 }else{
     ReactDOM.render(<LoginHeader/>, document.getElementById('header'));
 }
-// Render our react components within the html DOM
 
 ReactDOM.render(<Footer/>, document.getElementById('footer'));
 

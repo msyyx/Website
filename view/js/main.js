@@ -1,3 +1,4 @@
+/** setup rotating gallery **/
 ;(function($){
 
 	var Carousel = function(poster){

@@ -65,23 +65,9 @@ router.post('/load', function(req,res,next){
     
 });
 
-/**router.post('/find', function (req, res, next) {
-    User.find({'_id':req.body._id,}, function (err, users) {
-        if (err) return next(err);
-        if (!(users[0] == null)){
-            var token = jwt.sign(users[0], 'SecretKey', {
-                expiresIn: 1440*60 // expires in 24 hours
-            });
-            //console.log(token);
-            res.send(token);                       
-        }
-    });
-});
-**/
 router.get('/:id', function(req, res, next) {
      res.sendFile('display.html', {root: "view/"});
 });
-
 
 
 router.get('/:id/info',function(req,res,next){

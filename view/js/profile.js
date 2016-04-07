@@ -19,13 +19,11 @@ window.onload =function(){
             //get user profile by user id
           $.get("/profile/"+data._id +"/info").done(function(d){
 
-            //console.log(d);
             
             $("#Name").text(d.name);
             $("#Username").text("Username :  "+d.username);
             $("#Email").text("Email :  " + d.email);
             $("#Birthdate").text("Birthdate :  "+d.dateofbirth);
-            //$("#recently").text(d.recentlyvisit);
         });
 
         })
@@ -65,13 +63,10 @@ window.onload =function(){
           alert("updated!");
          window.location.href='/profile.html';
           }).fail(function(d){
-            alert("gg");
+            alert("fail");
           });
 
        });
-        
-    
-
     });
     }
 function change(){
