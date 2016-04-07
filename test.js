@@ -1,9 +1,18 @@
 var assert = require('assert');
 
-var superagent = require("superagent");
-
-
-
+var server = require('./server');
+var fs = require('fs');
+var request = require('request');
+var ajax = require('ajax-request');
+var $ = require('jquery');
+var assert = require('assert');
+var http = require('http');
+var server = require('./server');
+var fs = require('fs');
+var request = require('request');
+var ajax = require('ajax-request');
+var $ = require('jquery');
+var http = express();
 describe("test",function  () {
   // body...
   describe("test register",function(){
@@ -13,17 +22,15 @@ describe("test",function  () {
           email:"test@gmail.com"
         };
         it("should add a user successfully", function (done) {
-          superagent.post('http://localhost:3000/user/add').send(testuser).end(function (err, res) {
-          assert.equal(res.statusCode, 200);
-          assert.equal(err, null);
-          done();
-          });
+          http.post('http://localhost:3000/user/add', testuser,function(response){
+        assert.equal(response.end, "Submission completed");
+       
+        });
         });
 
         it("should not add the same username twice", function (done) {
-        superagent.post('http://localhost:3000/user/add').send(testuser).end(function (err, res) {
-        assert.equal(err, Error("Invalid Username"));
-        done();
+        http.post('http://localhost:3000/user/add' ,testuser,function (err, res) {
+        assert.notEqual(err, null));
         });
     });
 
@@ -36,9 +43,8 @@ describe("test",function  () {
     }
 
     it("should not login", function (done) {
-      superagent.post('http://localhost:3000/user/find').send(login).end(function (err, res) {
-        assert.equal(err, Error("Incorrect information"));
-        done();
+      http.post('http://localhost:3000/user/find' ,login ,function (err, res) {
+        assert.notEqual(err, null);
       });
     });
 
@@ -49,8 +55,8 @@ describe("test",function  () {
     };
   
     it("should be able to login ", function (done) {
-      superagent.post('http://localhost:3000/user/find').send(login1).end(function (err, res) {
-        assert.equal(res.statusCode, 200);
+        http.post('http://localhost:3000/user/find',login1,function (err, res) {
+        assert.equal(res.end, "Information found");
         done();
       });
     });
