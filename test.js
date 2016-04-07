@@ -1,18 +1,19 @@
-var assert = require('assert');
+var express = require('express');
+var mongoose = require('mongoose');
+var path = require('path');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
-var server = require('./server');
-var fs = require('fs');
-var request = require('request');
-var ajax = require('ajax-request');
-var $ = require('jquery');
-var assert = require('assert');
-var http = require('http');
-var server = require('./server');
-var fs = require('fs');
-var request = require('request');
-var ajax = require('ajax-request');
-var $ = require('jquery');
-var http = express();
+var hostRoute = require('./controllers/routeHost.js');
+var orderRoute = require('./controllers/routeOrder.js');
+var userRoute = require('./controllers/routeUser.js');
+var profileRoute = require('./controllers/routeProfile.js');
+var app = express();
+var port = 3000;
+
+app.listen(port);
+var router = express.Router();
+
 describe("test",function  () {
   // body...
   describe("test register",function(){
@@ -22,15 +23,15 @@ describe("test",function  () {
           email:"test@gmail.com"
         };
         it("should add a user successfully", function (done) {
-          http.post('http://localhost:3000/user/add', testuser,function(response){
+          router.post('http://localhost:3000/user/add', testuser,function(response){
         assert.equal(response.end, "Submission completed");
        
         });
         });
 
         it("should not add the same username twice", function (done) {
-        http.post('http://localhost:3000/user/add' ,testuser,function (err, res) {
-        assert.notEqual(err, null));
+        router.post('http://localhost:3000/user/add' ,testuser,function (err, res) {
+        assert.notEqual(err, null);
         });
     });
 
@@ -43,7 +44,7 @@ describe("test",function  () {
     }
 
     it("should not login", function (done) {
-      http.post('http://localhost:3000/user/find' ,login ,function (err, res) {
+      router.post('http://localhost:3000/user/find' ,login ,function (err, res) {
         assert.notEqual(err, null);
       });
     });
@@ -55,7 +56,7 @@ describe("test",function  () {
     };
   
     it("should be able to login ", function (done) {
-        http.post('http://localhost:3000/user/find',login1,function (err, res) {
+        router.post('http://localhost:3000/user/find',login1,function (err, res) {
         assert.equal(res.end, "Information found");
         done();
       });
