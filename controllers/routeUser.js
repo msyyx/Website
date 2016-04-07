@@ -41,7 +41,6 @@ router.post('/add', function (req, res, next) {
                 password: key
             }).save(function ( err, user, count ){
                 if( err ) return next( err );
-                res.status(200);
                 res.end("Submission completed");
                 //res.redirect( '/' );
             });
@@ -62,8 +61,7 @@ router.post('/find', function (req, res, next) {
                 expiresIn: 1440*60 // expires in 24 hours
             });
             //console.log(token);
-            res.send(token);
-            res.status(200);            
+            res.send(token);            
             res.end("Information found");
         }else{
             return next(new Error("Incorrect information"));
