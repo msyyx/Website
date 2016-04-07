@@ -301,6 +301,8 @@ var Order = React.createClass({
       })
       .success(function(res) {
         alert("OrderPlaced");
+          window.location.href='/order';
+
       })
       .error(function(res) {
         alert("db error");
