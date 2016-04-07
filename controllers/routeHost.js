@@ -22,7 +22,6 @@ router.get('/', function(req, res, next) {
 /*search by name(:id)*/
 router.get('/search/:id', function(req, res, next) {
     var regex = new RegExp(req.params.id, 'i');
-    console.log("idk");
     Host.find({ name : regex} , function(err,q){
             res.send(q);
         }
@@ -39,6 +38,7 @@ router.post('/add', function(req, res, next) {
 
     // decode token
     if (token) {
+        console.log("token is" + token);
         // verifies secret and checks exp
         jwt.verify(token, 'SecretKey', function(err, decoded) {
             if (err) {
@@ -90,23 +90,6 @@ router.get('/:id/info', function(req, res, next) {
     });
 });
 
- /***** Not yet implement
- //update host information
- router.put('/:id', function(req, res, next) {
-    Host.findByIdAndUpdate(req.params.id, req.body, function (err, host) {
-        if (err) return next(err);
-        res.json(host);
-    });
-});
 
- // DELETE /host/:id
- router.delete('/:id', function(req, res, next) {
-    Host.findByIdAndRemove(req.params.id, req.body, function (err, host) {
-        if (err) return next(err);
-        res.json(host);
-    });
-});
-
- */
 
 module.exports = router;
