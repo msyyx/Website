@@ -1,11 +1,13 @@
 var counter = 1;
-var limit = 50;
+var limit = 50; //
 
+/** event handler for submitting host  **/
 $( "#hostInput" ).submit(function(e){
     e.preventDefault();
     var token = null;
     var cookie = document.cookie.split(';');
 
+    //checking if there is token in cookie
 if(cookie!= undefined){
     for (var i = 0;i<cookie.length; i++) {
         var name = cookie[i].split('=')[0].replace(' ' ,'');
@@ -17,12 +19,14 @@ if(cookie!= undefined){
 }
     console.log("data" + token);
 
+    //if no token redirect to login page
     if(token == null){
         alert("User not login! Redirecting...");
         window.location.href = "/login.html";
     }
 
 
+    //handle data and post to host
     var items = [];
     var prices= [];
     var hours = [];
@@ -65,7 +69,7 @@ if(cookie!= undefined){
 
 })
 
-
+/** adding and removing input fields  **/
 function addInput(divName){
     if (counter == limit)  {
         alert("You have reached the limit of adding " + counter + " inputs");

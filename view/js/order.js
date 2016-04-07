@@ -1,8 +1,3 @@
-//var React = require('react');
-//var ReactDOM = require('react-dom');
-
-
-
 
 var FetchOrder = React.createClass( {
   getInitialState: function() {
@@ -116,10 +111,6 @@ var DisplayOrder = React.createClass( {
   }
 });
 
-//var timer = setInterval(checkLogin, 10);
 
-//var checkLogin = function() {
-  //if(loggedIn) {
-  //  window.clearInterval(timer);
   ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/show"  comment = "yes"/>,document.getElementById("new-div"));
   ReactDOM.render(<FetchOrder url = "http://localhost:3000/order/myorder" comment = "no" />,document.getElementById("new-div2"));

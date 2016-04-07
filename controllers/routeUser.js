@@ -6,18 +6,14 @@ var mongoose = require('mongoose');
 var User = require('../models/user.js');
 var crypto = require('crypto');
 
-/* GET /host all hosts. */
+/* GET register page */
 router.get('/', function (req, res, next) {
-    /*Host.find(function (err, hosts) {
-        if (err) return next(err);
-        res.json(hosts);
-    });
-    */
+
     res.sendFile('register.html', {root: "view/"});
 });
 
 
-/* show all hosts */
+/* show all users (for testing only), delete if running server in real application*/
 router.get('/show', function (req, res, next) {
     User.find(function (err, users) {
     if (err) return next(err);
@@ -51,7 +47,7 @@ router.post('/add', function (req, res, next) {
 
 });
 
-// GET /host/username, password
+//return a token for user if log in successful
 router.post('/find', function (req, res, next) {
     var key = crypto.pbkdf2Sync(req.body.password, 'salt', 10000, 512);
     User.find({'username':req.body.username, 'password':key}, function (err, users) {
@@ -69,6 +65,8 @@ router.post('/find', function (req, res, next) {
     });
 });
 
+
+/* find user in the google database */
 router.post('/findGoogle', function (req, res, next) {
     User.find({'username':req.body.username}, function (err, users) {
         if (err) return next(err);
@@ -98,23 +96,5 @@ router.post('/findGoogle', function (req, res, next) {
     });
 });
 
-/***** Not yet implement
- //update host information
- router.put('/:id', function(req, res, next) {
-    Host.findByIdAndUpdate(req.params.id, req.body, function (err, host) {
-        if (err) return next(err);
-        res.json(host);
-    });
-});
-
- // DELETE /host/:id
- router.delete('/:id', function(req, res, next) {
-    Host.findByIdAndRemove(req.params.id, req.body, function (err, host) {
-        if (err) return next(err);
-        res.json(host);
-    });
-});
-
- */
 
 module.exports = router;
